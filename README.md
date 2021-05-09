@@ -26,9 +26,9 @@
   3. Evan Hallmark owned the data. This file includes betting information on the money lines for a large selection of nba games.
   
 ### How many observations (rows) are in your data?
-  1. 24,196 observations
-	2. 878 observations
-	3. 125,287 observations
+  1. 24,196 rows
+  2. 878 observations
+  3. 125,287 observations
 	
 ### How many features (columns) are in the data?
   1. 21 columns
