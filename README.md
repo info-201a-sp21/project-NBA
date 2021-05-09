@@ -1,7 +1,3 @@
-# Final Project
-<<<<<<< HEAD
-Use this `REAMDE.md` file to describe your final project (as detailed on Canvas).
-
 Domain: NBA
 Why are you interested in this field/domain?
   We all like and play sports. We are passionate about basketball. It’s popular among American culture.
@@ -39,4 +35,3 @@ How many features (columns) are in the data?
   
 What questions (from above) can be answered using the data in this dataset?
   The first data set answered the question of how reliable this data is. It is pulled straight from the NBA’s    stats page so it can be trusted. The data was intended to predict the winner of NBA games so it might help     betters make decisions.
->>>>>>> ba943a033edb6d2abb51c4312733c45ad653980a
