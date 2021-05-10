@@ -39,4 +39,4 @@
   3. 7 columns
 
 ### What questions (from above) can be answered using the data in this dataset?
-The first data set answered the question of how reliable this data is. It is pulled straight from the NBA’s    stats page so it can be trusted. The data was intended to predict the winner of NBA games so it might help     betters make decisions.
+The first data set answered the question of how reliable this data is. It is pulled straight from the NBA’s    stats page so it can be trusted. The data was intended to predict the winner of NBA games so it might help betters make decisions.
