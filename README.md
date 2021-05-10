@@ -3,6 +3,15 @@
 ### Domain: NBA
 ### Why are you interested in this field/domain?
   We all like and play sports. We are passionate about basketball. It’s popular among American culture.
+  
+### Examples of other data driven projects relaed to this domain
+  1. https://www.theatlantic.com/entertainment/archive/2015/06/nba-data-analytics/396776/
+  Every micro-movement on the court would be tracked, quantified, and archived. The Rockets incorporated advanced analysis into how they play the game and thus set the all-time record for three-pointers in the season. 
+  2. https://sportsanalytics.berkeley.edu/projects/nba-shot-eval.pdf
+  They first track and analyze data with some utility functions. Then they find out the distance between the shooter and closest teammate has an important role. Therefore, they underscore the spacing in offense while practicing and during the games. 
+  3. https://theconversation.com/for-these-students-using-data-in-sports-is-about-more-than-winning-games-148898
+  Golden State Warriors is one of the first teams use data and analytics to improve their performances. As a result, the team subsequently won league championship in 2015, 2017 and 2018. Analysis help them make more informed decisions. 
+
 
 ### What other examples of data driven projects have you found related to this domain (share at least 3)?
   * Election for all-star game
