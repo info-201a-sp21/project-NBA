@@ -10,10 +10,13 @@
   * Gamlbing off season champion
   
 ### What data-driven questions do you hope to answer about this domain (share at least 3)?
-  * Will the home game and away game affect the teams' performances?
-  * How influencial is the three point field goal for the offense side?
-  * Is the number of teams' wins in the regular season is most likely to win the final championship?
-  
+  1. Will the home game and away game affect the teams' performances?
+      * comparing the winnning rate for each team during home game and away game.
+  2. How influencial is the three point field goal for the offense side?
+      * comparing the averegr three point field goal during winning and losing game with the average field goal during winning and losing game in each year.
+  3. Is the team with the most regular season wins likely to win the final championship?
+      * compairing weather the team with the most wins in regular season is the final champion in each year.
+
 # Finding Data
 ### Where did you download the data (e.g., a web URL)?
   1. https://www.kaggle.com/nathanlauga/nba-games
