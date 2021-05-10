@@ -10,9 +10,9 @@
   * Gamlbing off season champion
   
 ### What data-driven questions do you hope to answer about this domain (share at least 3)?
-  * How accurate are the data predicted?
-  * How reliable are the sources from which the data is collected?
-  * Who might this data set help and in what way?
+  * Will the home game and away game affect the teams' performances?
+  * How influencial is the three point field goal for the offense side?
+  * Is the number of teams' wins in the regular season is most likely to win the final championship?
   
 # Finding Data
 ### Where did you download the data (e.g., a web URL)?
