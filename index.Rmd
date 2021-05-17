@@ -1,0 +1,9 @@
+---
+title: "Project-2020NBA"
+author: ""
+date: "5/17/2021"
+output: html_document
+---
+
+## Introduction
+This project takes in a data set of 2020 NBA games. We analyzed 30 teams' performance based on scores, field goal percentage, 3 pointer percentage and other statistics throughout the season. Our group share the same interest in basketball, and we believe the analysis and visualization on the data set could be helpful for us to understand more about each team.
