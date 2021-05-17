@@ -43,7 +43,7 @@ visitor_team_avg_fg <- games_data %>%
 teams_avg_fg <- 
   left_join(home_team_avg_fg, visitor_team_avg_fg, by = "team_name")
 
-# calculate average field goal percentage of both home and away games 
+# calculate average FG percentage of both home and away games 
 # for each team; select top 8 teams with highest average value
 top8_teams_avg_fg <- teams_avg_fg %>% 
   mutate(average = (home_avg_fg_perc+away_avg_fg_perc)/2) %>% 
@@ -55,7 +55,7 @@ top8_teams_avg_fg <- teams_avg_fg %>%
 top8_teams_avg_fg <- 
   gather(top8_teams_avg_fg, home_away, teams_avg_fg, -team_name)
 
-# create a grouped barchart for teams' average field goal percentage
+# create a grouped barchart for teams' Top8 average field goal percentage
 top8_teams_avg_fg_chart <-
   ggplot(top8_teams_avg_fg, 
          aes(fill = home_away, y = teams_avg_fg, x = team_name)) + 
