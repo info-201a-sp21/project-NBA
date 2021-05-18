@@ -5,5 +5,19 @@ date: "5/17/2021"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+source("scripts/chart1.R")
+library("knitr")
+library("ggplot2")
+library("plotly")
+```
+
 ## Introduction
 This project takes in a data set of 2020 NBA games. We analyzed 30 teams' performance based on scores, field goal percentage, 3 pointer percentage and other statistics throughout the season. Our group share the same interest in basketball, and we believe the analysis and visualization on the data set could be helpful for us to understand more about each team.
+
+## Chart1
+`r top8_teams_avg_fg_chart`
