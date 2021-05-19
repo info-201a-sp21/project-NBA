@@ -9,7 +9,7 @@ library(plotly)
 # load and clean data sets
 games_data <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
 games_data_2020 <- games_data %>% 
-  filter(SEASON == "2020")
+  filter(SEASON == "2019")
 teams_data <- read.csv("../data/teams.csv", stringsAsFactors = FALSE)
 teams_data <- teams_data %>% 
   select(TEAM_ID, NICKNAME)
