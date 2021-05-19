@@ -10,7 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r include=FALSE}
-source("scripts/chart1.R")
+source("./scripts/chart1.R")
+source("./scripts/Summary information.R")
 library("knitr")
 library("ggplot2")
 library("plotly")
@@ -18,6 +19,15 @@ library("plotly")
 
 ## Introduction
 This project takes in a data set of 2020 NBA games. We analyzed 30 teams' performance based on scores, field goal percentage, 3 pointer percentage and other statistics throughout the season. Our group share the same interest in basketball, and we believe the analysis and visualization on the data set could be helpful for us to understand more about each team.
+
+## Summary Information
+From the 2019 NBA season data set, the average field goal percentage for away games is `r Ave_FG_PTC_away`, which is almost the same as home games `r Ave_FG_PTC_home`. In comparison to field goal percentage, rebound times is also not significantly different. The number of rebound for home games is `r Rebound_home`, and the number of rebound for away games is `r Rebound_away`. Although there is no significant difference between the home and away games' shooting percentage and rebound times, `r num_home_win` home game wins is larger than `r num_home_loss` home game losses. Therefore, there might be other factors that influence players' performances. 
+
+## Summary Table
+The table shows the sum of each team's three statistics in 2019 season. Because there are four factors affect basketball success, the table below contains three out of four factors for each team's home game. 
+``` {r, echo=FALSE}
+kable((all_teams_data)
+```
 
 ## Grouped barchart
 `r top8_teams_avg_fg_chart`
