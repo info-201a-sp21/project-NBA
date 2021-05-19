@@ -1,5 +1,4 @@
-#Double bar graph: FG Percentage for home vs. away (All teams/ Top 5 teams) (Nicole)
-
+# Double bar graph: FG Percentage for home vs. away.
 # load needed packages
 library(dplyr)
 library(ggplot2)
@@ -64,3 +63,4 @@ top8_teams_avg_fg_chart <-
 
 # make the map interactive
 ggplotly(top8_teams_avg_fg_chart)
+
