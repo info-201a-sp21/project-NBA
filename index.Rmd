@@ -51,5 +51,7 @@ away games, however, the difference is really small, around 0.2%.
 lakers_pts_chart
 ```
 
+**Interpretation:**
 
-
+This chart is try to figure out how many points the 2019 champion, Lakers, get for each game throughout the whole season. Is the champion team perform steady?
+We choose the line chart for this problem because it can display the trend clearly. The more closer to teh red smoothy line, the more steady they perform. However, in season 2019, they were not that steady and have a big range of PTS. The max PTS is above 140, but the minimum they got was less than 80. They may suffer some effect, like player injury or BLM activities. From late March to August, there is a straight line since NBA suspended the games due to the Covid-19. Even though their PTS is not steady, their average PTS is about 110 per game, which is really good and lead them to the final championship.
