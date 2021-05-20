@@ -9,16 +9,16 @@ chart3 <- function(games_data) {
 
   # distinguish home/away game
   lakers_games$type <- ifelse(lakers_games$HOME_TEAM_NAME == "Lakers",
-    "home", "away"
+    "Home", "Away"
   )
 
   # get lakers point for each game
-  lakers_games$lakers_point <- ifelse(lakers_games$type == "home",
+  lakers_games$lakers_point <- ifelse(lakers_games$type == "Home",
     lakers_games$PTS_home, lakers_games$PTS_away
   )
 
   # get opponent's name
-  lakers_games$opponent <- ifelse(lakers_games$type == "home",
+  lakers_games$opponent <- ifelse(lakers_games$type == "Home",
     lakers_games$VISITOR_TEAM_NAME,
     lakers_games$HOME_TEAM_NAME
   )
@@ -34,7 +34,8 @@ chart3 <- function(games_data) {
       text = paste(
         "Date :", as.Date(GAME_DATE_EST),
         "<br>Lakers point: ", lakers_point,
-        "<br>Opponent: ", opponent
+        "<br>Opponent: ", opponent,
+        "<br>Type: ", type, "game"
       )
     ), color = "gold") +
     labs(x = "Date", y = "Lakers points", title = "Season 2019 Lakers points") +
