@@ -7,7 +7,7 @@ library(plotly)
 
 # load and clean data sets
 games_data <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
-games_data_2020 <- games_data %>% 
+games_data_2019 <- games_data %>% 
   filter(SEASON == "2019")
 teams_data <- read.csv("../data/teams.csv", stringsAsFactors = FALSE)
 teams_data <- teams_data %>% 
@@ -17,7 +17,7 @@ teams_data <- teams_data %>%
 teams_data <- teams_data %>% 
   rename(HOME_TEAM_ID = TEAM_ID)
 add_home_team_name <- 
-  left_join(games_data_2020, teams_data, by = "HOME_TEAM_ID") %>% 
+  left_join(games_data_2019, teams_data, by = "HOME_TEAM_ID") %>% 
   rename(HOME_TEAM_NAME = NICKNAME)
 
 # add team names for visitor teams
@@ -58,8 +58,11 @@ top8_teams_avg_fg <-
 top8_teams_avg_fg_chart <-
   ggplot(top8_teams_avg_fg, 
          aes(fill = home_away, y = teams_avg_fg, x = team_name)) + 
+  scale_fill_discrete(labels = c("Away games", "Home games")) +
   geom_bar(position = "dodge", stat = "identity") +
-  scale_fill_brewer(palette = "Set3")
+  labs(title = "Top8 teams FG percentage home vs. away game",
+       x = "Team name", y = "Teams average FG percentage") +
+  theme(legend.title = element_blank())
 
 # make the map interactive
 ggplotly(top8_teams_avg_fg_chart)
