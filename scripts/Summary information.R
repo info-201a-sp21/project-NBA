@@ -64,7 +64,7 @@ summary_info <- function(games_data) {
     filter(HOME_TEAM_WINS == "0") %>%
     summarize(total_loose = n()) %>%
     pull(total_loose)
-  info$num_home_win <- num_home_win
+  info$num_home_loss <- num_home_loss
 
   ### Rebound Home vs. Away
   rebound_home <- nba_games_2020 %>%
