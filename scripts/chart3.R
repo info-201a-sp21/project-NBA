@@ -66,5 +66,5 @@ lakers_pts_chart <- ggplot(data = lakers_games) +
     mapping = aes(x = as.Date(GAME_DATE_EST), y = lakers_point),
     se = FALSE, method = "loess", size = 0.5, color = "red", linetype = "dashed"
   )
-ggplotly(lakers_pts_chart, tooltip = "text")
+lakers_pts_chart <- ggplotly(lakers_pts_chart, tooltip = "text")
 

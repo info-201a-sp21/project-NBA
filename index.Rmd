@@ -12,9 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r include=FALSE}
 source("./scripts/chart1.R")
 source("./scripts/Summary information.R")
-library("knitr")
-library("ggplot2")
-library("plotly")
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(plotly)
 ```
 
 ## Introduction
