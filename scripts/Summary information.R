@@ -1,7 +1,7 @@
 summary_info <- function(games_data) {
   info <- list()
 
-  # Filter data to 2019 season, the date is 2020
+  ### Filter data to 2019 season, the date is 2020
   nba_games_2020 <- games_data %>% filter(SEASON == "2019")
 
 
@@ -29,29 +29,7 @@ summary_info <- function(games_data) {
     pull(ave)
   info$ave_fg_ptc_away <- round(ave_fg_ptc_away, digits = 3)
 
-
-  ### FG3_PCT Home vs. Away
-  ave_fg3_pct_home <- nba_games_2020 %>%
-    select(FG3_PCT_home) %>%
-    summarize(
-      count = n(),
-      FG3_PCT_home = sum(FG3_PCT_home),
-      ave = FG3_PCT_home / count
-    ) %>%
-    pull(ave)
-  info$ave_fg3_pct_home <- round(ave_fg3_pct_home, digits = 3)
-
-  ave_fg3_pct_away <- nba_games_2020 %>%
-    select(FG3_PCT_away) %>%
-    summarize(
-      count = n(),
-      FG3_PCT_away = sum(FG3_PCT_away),
-      ave = FG3_PCT_away / count
-    ) %>%
-    pull(ave)
-  info$ave_fg3_pct_away <- round(ave_fg3_pct_away, digits = 3)
-
-  # total number of win and lose
+  ### total number of win and lose
   num_home_win <- nba_games_2020 %>%
     select(HOME_TEAM_WINS) %>%
     filter(HOME_TEAM_WINS == "1") %>%
