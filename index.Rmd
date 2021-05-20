@@ -1,5 +1,5 @@
 ---
-title: "Project-2020NBA"
+title: "Project-2019 NBA"
 author: "Group C1"
 date: "5/17/2021"
 output: html_document
@@ -46,16 +46,20 @@ library(knitr)
 ```
 
 ## Introduction
-This project takes in a data set of 2020 NBA games. We analyzed 30 teams' performance based on scores, field goal percentage, 3 pointer percentage and other statistics throughout the season. Our group share the same interest in basketball, and we believe the analysis and visualization on the data set could be helpful for us to understand more about each team.
+This project takes in a data set of 2019 NBA games. We analyzed 30 teams' performance based on scores, field goal percentage, 3 pointer percentage and other statistics throughout the season. Our group share the same interest in basketball, and we believe the analysis and visualization on the data set could be helpful for us to understand more about each team.
 
 ## Summary Information
 ``` {r, echo=FALSE, include=FALSE}
 summary_info <- summary_info(games_data)
 ```
-From the 2019 NBA season data set, the average field goal percentage for away games is `r summary_info$ave_fg_ptc_away`, which is almost the same as home games `r summary_info$ave_fg_ptc_home`. In comparison to field goal percentage, rebound times is also not significantly different. The number of rebound for home games is `r summary_info$rebound_home`, and the number of rebound for away games is `r summary_info$rebound_away`. Also, because of the COVID, there was a gap between March to July with missing data in 2019 season. This might cause the data not significantly different enough. Although there is no significant difference between the home and away games' shooting percentage and rebound times, `r summary_info$num_home_win` home game wins is larger than `r summary_info$num_home_loss` home game losses. Therefore, there might be other factors that influence players' performances. 
+From the data set, we want to analysis what factors could influence players' performances. Whether home or away games affect players' performances due to changing audiences and environment or is there any other factor? 
+
+From the 2019 NBA season data set, the average field goal percentage for away games is `r summary_info$ave_fg_ptc_away`, which is almost the same as home games `r summary_info$ave_fg_ptc_home`. In comparison to field goal percentage, rebound times is also not significantly different. The number of rebound for home games is `r summary_info$rebound_home`, and the number of rebound for away games is `r summary_info$rebound_away`. Also, because of the COVID, there was a gap between March to July with missing data in 2019 season. This might cause the data not significantly different enough. 
+
+Although there is no significant difference between the home and away games' shooting percentage and rebound times, `r summary_info$num_home_win` home game wins is larger than `r summary_info$num_home_loss` home game losses. Therefore, there might be other factors that influence players' performances. 
 
 ## Summary Table
-The table shows the sum of each team's three statistics in 2019 season. Because there are four factors affect basketball success, the table below contains three out of four factors for each team's home game. The common sense is that teams with highest field goal percentage, free throw percentage, and rebounds will win the championship. As the data shows, Lakers had the highest field goal percentage and rebounds. They also had second highest free throw percentage, only one percent lower than the highest. Last year's NBA championship was Lakers as the data indicated. The result matches with data in the summary table.
+The table shows the sum of each team's three statistics in 2019 season. From the table, we can predict the top teams that may compete during the championship. Because there are four factors affect basketball success, the table below contains three out of four factors for each team's home games. The common sense is that teams with highest field goal percentage, free throw percentage, and rebounds will win the championship. As the data shows, Lakers had the highest field goal percentage and rebounds. They also had second highest free throw percentage, only one percent lower than the highest. Last year's NBA championship was Lakers. The result matches with data in the summary table.
 ``` {r, echo=FALSE}
 kable(summary_table(games_data))
 ```
