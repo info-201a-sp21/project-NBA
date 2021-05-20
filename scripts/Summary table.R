@@ -1,10 +1,11 @@
 ### Summary table
+library(dplyr)
 
 # load and clean data sets
-games_data <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
+games_data <- read.csv("data/games.csv", stringsAsFactors = FALSE)
 games_data_2020 <- games_data %>% 
   filter(SEASON == "2019")
-teams_data <- read.csv("../data/teams.csv", stringsAsFactors = FALSE)
+teams_data <- read.csv("data/teams.csv", stringsAsFactors = FALSE)
 teams_data <- teams_data %>% 
   select(TEAM_ID, NICKNAME)
 
@@ -31,7 +32,7 @@ all_teams_data <- games_data %>%
   summarize(REB_home = sum(REB_home),
             FT_PCT_home = sum(FT_PCT_home),
             FG_PCT_home = sum(FG_PCT_home)) %>%
-  arrange(FG_PCT_home) 
+  arrange(FG_PCT_home)
 
   
 # Table with 4 teams

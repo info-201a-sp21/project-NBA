@@ -9,13 +9,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r include=FALSE}
-source("./scripts/chart1.R")
-source("./scripts/Summary information.R")
-library(dplyr)
-library(ggplot2)
-library(tidyverse)
-library(plotly)
+```{r echo = FALSE, include=FALSE}
+source("scripts/chart1.R")
+source("scripts/Summary information.R")
+source("scripts/Summary table.R")
+library(knitr)
 ```
 
 ## Introduction
@@ -27,11 +25,12 @@ From the 2019 NBA season data set, the average field goal percentage for away ga
 ## Summary Table
 The table shows the sum of each team's three statistics in 2019 season. Because there are four factors affect basketball success, the table below contains three out of four factors for each team's home game. 
 ``` {r, echo=FALSE}
-kable((all_teams_data)
+kable(all_teams_data)
 ```
 
 ## Grouped barchart
 `r top8_teams_avg_fg_chart`
+
 **Insights:**
 
 * In general, all top8 teams have average field goal percentage higher than 45%

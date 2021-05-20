@@ -1,6 +1,7 @@
+library(dplyr)
 
 # Read files
-games <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
+games <- read.csv("data/games.csv", stringsAsFactors = FALSE)
 
 # Filter data to 2019 season, the date is 2020
 NBA_games_2020 <- games %>% filter(SEASON == "2019")
@@ -53,7 +54,7 @@ num_home_win <- NBA_games_2020 %>%
   summarize(total_win = n()) %>%
   pull(total_win)
 
-num_home_loose <- NBA_games_2020 %>%
+num_home_loss <- NBA_games_2020 %>%
   select(HOME_TEAM_WINS) %>%
   filter(HOME_TEAM_WINS == "0") %>%
   summarize(total_loose = n()) %>%

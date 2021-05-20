@@ -6,10 +6,10 @@ library(tidyverse)
 library(plotly)
 
 # load and clean data sets
-games_data <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
+games_data <- read.csv("data/games.csv", stringsAsFactors = FALSE)
 games_data_2019 <- games_data %>% 
   filter(SEASON == "2019")
-teams_data <- read.csv("../data/teams.csv", stringsAsFactors = FALSE)
+teams_data <- read.csv("data/teams.csv", stringsAsFactors = FALSE)
 teams_data <- teams_data %>% 
   select(TEAM_ID, NICKNAME)
 
@@ -65,5 +65,5 @@ top8_teams_avg_fg_chart <-
   theme(legend.title = element_blank())
 
 # make the map interactive
-ggplotly(top8_teams_avg_fg_chart)
+top8_teams_avg_fg_chart <- ggplotly(top8_teams_avg_fg_chart)
 
