@@ -1,12 +1,40 @@
 ---
 title: "Project-2020NBA"
-author: ""
+author: "Group C1"
 date: "5/17/2021"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,warning = FALSE, message = FALSE)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(tidyverse)
+```
+
+``` {r, echo=FALSE}
+# load and clean data sets
+games_data <- read.csv("data/games.csv", stringsAsFactors = FALSE)
+games_data_2019 <- games_data %>%
+  filter(SEASON == "2019")
+teams_data <- read.csv("data/teams.csv", stringsAsFactors = FALSE)
+teams_data <- teams_data %>%
+  select(TEAM_ID, NICKNAME)
+
+# add team names for home teams
+teams_data <- teams_data %>%
+  rename(HOME_TEAM_ID = TEAM_ID)
+add_home_team_name <-
+  left_join(games_data_2019, teams_data, by = "HOME_TEAM_ID") %>%
+  rename(HOME_TEAM_NAME = NICKNAME)
+
+# add team names for visitor teams
+teams_data <- teams_data %>%
+  rename(VISITOR_TEAM_ID = HOME_TEAM_ID)
+games_data <-
+  left_join(add_home_team_name, teams_data, by = "VISITOR_TEAM_ID") %>%
+  rename(VISITOR_TEAM_NAME = NICKNAME)
 ```
 
 ```{r echo = FALSE, include=FALSE}
@@ -21,20 +49,23 @@ library(knitr)
 This project takes in a data set of 2020 NBA games. We analyzed 30 teams' performance based on scores, field goal percentage, 3 pointer percentage and other statistics throughout the season. Our group share the same interest in basketball, and we believe the analysis and visualization on the data set could be helpful for us to understand more about each team.
 
 ## Summary Information
-From the 2019 NBA season data set, the average field goal percentage for away games is `r Ave_FG_PTC_away`, which is almost the same as home games `r Ave_FG_PTC_home`. In comparison to field goal percentage, rebound times is also not significantly different. The number of rebound for home games is `r Rebound_home`, and the number of rebound for away games is `r Rebound_away`. Although there is no significant difference between the home and away games' shooting percentage and rebound times, `r num_home_win` home game wins is larger than `r num_home_loss` home game losses. Therefore, there might be other factors that influence players' performances. 
+``` {r, echo=FALSE, include=FALSE}
+summary_info <- summary_info(games_data)
+```
+From the 2019 NBA season data set, the average field goal percentage for away games is `r summary_info$Ave_FG_PTC_away`, which is almost the same as home games `r summary_info$Ave_FG_PTC_home`. In comparison to field goal percentage, rebound times is also not significantly different. The number of rebound for home games is `r summary_info$Rebound_home`, and the number of rebound for away games is `r summary_info$Rebound_away`. Although there is no significant difference between the home and away games' shooting percentage and rebound times, `r summary_info$num_home_win` home game wins is larger than `r summary_info$num_home_loss` home game losses. Therefore, there might be other factors that influence players' performances. 
 
 ## Summary Table
 The table shows the sum of each team's three statistics in 2019 season. Because there are four factors affect basketball success, the table below contains three out of four factors for each team's home game. 
 ``` {r, echo=FALSE}
-kable(all_teams_data)
+kable(summary_table(games_data))
 ```
 
 ## Three Charts
 
 ### 1. Double Bar Chart: Top8 teams FG percentage home vs. away game
 
-``` {r, echo=FALSE}
-top8_teams_avg_fg_chart
+``` {r, echo=FALSE, warning=FALSE}
+chart1(games_data)
 ```
 
 **Insights:**
@@ -47,11 +78,12 @@ away games, however, the difference is really small, around 0.2%.
 
 ### 3. Line Chart: champion team’s (Lakers) PTS throughout the whole season
 
-``` {r, echo=FALSE}
-lakers_pts_chart
+``` {r echo=FALSE}
+chart3(games_data)
 ```
 
 **Interpretation:**
 
 This chart is try to figure out how many points the 2019 champion, Lakers, get for each game throughout the whole season. Is the champion team perform steady?
-We choose the line chart for this problem because it can display the trend clearly. The more closer to teh red smoothy line, the more steady they perform. However, in season 2019, they were not that steady and have a big range of PTS. The max PTS is above 140, but the minimum they got was less than 80. They may suffer some effect, like player injury or BLM activities. From late March to August, there is a straight line since NBA suspended the games due to the Covid-19. Even though their PTS is not steady, their average PTS is about 110 per game, which is really good and lead them to the final championship.
+
+We choose the line chart for this problem because it can display the trend clearly. The more closer to teh red smooth line, the more steady they perform. However, in season 2019, they were not that steady and have a big range of PTS. The max PTS is above 140, but the minimum they got was less than 80. They may suffer some effect, like player injury or BLM activities. From late March to August, there is a straight line since NBA suspended the games due to the Covid-19. Even though their PTS is not steady, their average PTS is about 110 per game, which is really good and lead them to the final championship.

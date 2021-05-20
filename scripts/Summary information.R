@@ -1,10 +1,9 @@
-library(dplyr)
+summary_info <- function(games_data) {
 
-# Read files
-games <- read.csv("data/games.csv", stringsAsFactors = FALSE)
-
+info <-list()
+  
 # Filter data to 2019 season, the date is 2020
-NBA_games_2020 <- games %>% filter(SEASON == "2019")
+NBA_games_2020 <- games_data %>% filter(SEASON == "2019")
 
 
 ### Summary information: Does home or away, different environment and audiences, affect players' shooting percentage? 
@@ -16,7 +15,8 @@ Ave_FG_PTC_home <- NBA_games_2020 %>%
     FG_PCT_home = sum(FG_PCT_home),
     ave = FG_PCT_home / count)%>%
   pull(ave)
-Ave_FG_PTC_home <- round(Ave_FG_PTC_home, digits = 3)
+info$Ave_FG_PTC_home <- round(Ave_FG_PTC_home, digits = 3)
+
 
 Ave_FG_PTC_away <- NBA_games_2020 %>%
   select(FG_PCT_away) %>%
@@ -25,7 +25,7 @@ Ave_FG_PTC_away <- NBA_games_2020 %>%
     FG_PCT_away = sum(FG_PCT_away),
     ave = FG_PCT_away / count) %>%
   pull(ave)
-Ave_FG_PTC_away <- round(Ave_FG_PTC_away, digits = 3)
+info$Ave_FG_PTC_away <- round(Ave_FG_PTC_away, digits = 3)
 
 
 ### FG3_PCT Home vs. Away
@@ -36,7 +36,7 @@ Ave_FG3_PCT_home <- NBA_games_2020 %>%
     FG3_PCT_home = sum(FG3_PCT_home),
     ave = FG3_PCT_home / count) %>%
   pull(ave)
-Ave_FG3_PCT_home <- round(Ave_FG3_PCT_home, digits = 3)
+info$Ave_FG3_PCT_home <- round(Ave_FG3_PCT_home, digits = 3)
 
 Ave_FG3_PCT_away <- NBA_games_2020 %>%
   select(FG3_PCT_away) %>%
@@ -45,7 +45,7 @@ Ave_FG3_PCT_away <- NBA_games_2020 %>%
     FG3_PCT_away = sum(FG3_PCT_away),
     ave = FG3_PCT_away / count) %>%
   pull(ave)
-Ave_FG3_PCT_away <- round(Ave_FG3_PCT_away, digits = 3)
+info$Ave_FG3_PCT_away <- round(Ave_FG3_PCT_away, digits = 3)
 
 # total number of win and lose
 num_home_win <- NBA_games_2020 %>%
@@ -53,12 +53,14 @@ num_home_win <- NBA_games_2020 %>%
   filter(HOME_TEAM_WINS == "1") %>%
   summarize(total_win = n()) %>%
   pull(total_win)
+info$num_home_win <- num_home_win
 
 num_home_loss <- NBA_games_2020 %>%
   select(HOME_TEAM_WINS) %>%
   filter(HOME_TEAM_WINS == "0") %>%
   summarize(total_loose = n()) %>%
   pull(total_loose)
+info$num_home_win <-num_home_win
 
 ### Rebound Home vs. Away
 Rebound_home <- NBA_games_2020 %>%
@@ -68,7 +70,7 @@ Rebound_home <- NBA_games_2020 %>%
     REB_home = sum(REB_home),
     ave = REB_home / count) %>%
   pull(ave)
-Rebound_home <- round(Rebound_home, digits = 3)
+info$Rebound_home <- round(Rebound_home, digits = 3)
 
 
 Rebound_away <- NBA_games_2020 %>%
@@ -78,5 +80,7 @@ Rebound_away <- NBA_games_2020 %>%
     REB_away = sum(REB_away),
     ave = REB_away / count) %>%
   pull(ave)
-Rebound_away <- round(Rebound_away, digits = 3)
+info$Rebound_away <- round(Rebound_away, digits = 3)
 
+return(info)
+}

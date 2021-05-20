@@ -1,31 +1,7 @@
 # Double bar graph: FG Percentage for home vs. away.
 # load needed packages
-library(dplyr)
-library(ggplot2)
-library(tidyverse)
-library(plotly)
 
-# load and clean data sets
-games_data <- read.csv("data/games.csv", stringsAsFactors = FALSE)
-games_data_2019 <- games_data %>% 
-  filter(SEASON == "2019")
-teams_data <- read.csv("data/teams.csv", stringsAsFactors = FALSE)
-teams_data <- teams_data %>% 
-  select(TEAM_ID, NICKNAME)
-
-# add team names for home teams
-teams_data <- teams_data %>% 
-  rename(HOME_TEAM_ID = TEAM_ID)
-add_home_team_name <- 
-  left_join(games_data_2019, teams_data, by = "HOME_TEAM_ID") %>% 
-  rename(HOME_TEAM_NAME = NICKNAME)
-
-# add team names for visitor teams
-teams_data <- teams_data %>% 
-  rename(VISITOR_TEAM_ID = HOME_TEAM_ID)
-games_data <-
-  left_join(add_home_team_name, teams_data, by = "VISITOR_TEAM_ID") %>% 
-  rename(VISITOR_TEAM_NAME = NICKNAME)
+chart1 <- function(games_data) {
 
 # summarize average FG percentage for home teams & visitor teams
 home_team_avg_fg <- games_data %>% 
@@ -67,3 +43,6 @@ top8_teams_avg_fg_chart <-
 # make the map interactive
 top8_teams_avg_fg_chart <- ggplotly(top8_teams_avg_fg_chart)
 
+return(top8_teams_avg_fg_chart)
+
+}

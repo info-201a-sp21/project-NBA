@@ -1,31 +1,7 @@
 # Line char: Season 2019 champion team (Lakers) PTS throughout the whole season
 
-library(dplyr)
-library(ggplot2)
-library(plotly)
-
-# load and clean data sets
-games_data <- read.csv("data/games.csv", stringsAsFactors = FALSE)
-games_data_2019 <- games_data %>%
-  filter(SEASON == "2019")
-teams_data <- read.csv("data/teams.csv", stringsAsFactors = FALSE)
-teams_data <- teams_data %>%
-  select(TEAM_ID, NICKNAME)
-
-# add team names for home teams
-teams_data <- teams_data %>%
-  rename(HOME_TEAM_ID = TEAM_ID)
-add_home_team_name <-
-  left_join(games_data_2019, teams_data, by = "HOME_TEAM_ID") %>%
-  rename(HOME_TEAM_NAME = NICKNAME)
-
-# add team names for visitor teams
-teams_data <- teams_data %>%
-  rename(VISITOR_TEAM_ID = HOME_TEAM_ID)
-games_data <-
-  left_join(add_home_team_name, teams_data, by = "VISITOR_TEAM_ID") %>%
-  rename(VISITOR_TEAM_NAME = NICKNAME)
-
+chart3 <- function(games_data) {
+  
 # select Lakers games
 lakers_games <- games_data %>%
   filter(HOME_TEAM_NAME == "Lakers" | VISITOR_TEAM_NAME == "Lakers") %>%
@@ -68,3 +44,5 @@ lakers_pts_chart <- ggplot(data = lakers_games) +
   )
 lakers_pts_chart <- ggplotly(lakers_pts_chart, tooltip = "text")
 
+return(lakers_pts_chart)
+}
