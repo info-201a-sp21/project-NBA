@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r echo = FALSE, include=FALSE}
 source("scripts/chart1.R")
+source("scripts/chart3.R")
 source("scripts/Summary information.R")
 source("scripts/Summary table.R")
 library(knitr)
