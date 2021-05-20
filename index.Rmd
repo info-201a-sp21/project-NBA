@@ -28,8 +28,13 @@ The table shows the sum of each team's three statistics in 2019 season. Because 
 kable(all_teams_data)
 ```
 
-## Grouped barchart
-`r top8_teams_avg_fg_chart`
+## Three Charts
+
+### 1. Double Bar Chart: Top8 teams FG percentage home vs. away game
+
+``` {r, echo=FALSE}
+top8_teams_avg_fg_chart
+```
 
 **Insights:**
 
@@ -38,3 +43,12 @@ in both home and away games.
 * 7 out of top 8 teams have a higher average field goal percentage in home games.
 * Pelicans is the only team that has a higher average field goal percentage in
 away games, however, the difference is really small, around 0.2%.
+
+### 3. Line Chart: champion team’s (Lakers) PTS throughout the whole season
+
+``` {r, echo=FALSE}
+lakers_pts_chart
+```
+
+
+
