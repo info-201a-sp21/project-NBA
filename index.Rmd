@@ -39,6 +39,7 @@ games_data <-
 
 ```{r echo = FALSE, include=FALSE}
 source("scripts/chart1.R")
+source("scripts/chart2.R")
 source("scripts/chart3.R")
 source("scripts/Summary information.R")
 source("scripts/Summary table.R")
@@ -79,6 +80,13 @@ in both home and away games.
 * 7 out of top 8 teams have a higher average field goal percentage in home games.
 * Pelicans is the only team that has a higher average field goal percentage in
 away games, however, the difference is really small, around 0.2%.
+
+
+### 2. Scatter plot
+``` {r, echo=FALSE, warning=FALSE}
+chart2(games_data)
+```
+
 
 ### 3. Line Chart: champion team’s (Lakers) PTS throughout the whole season
 
