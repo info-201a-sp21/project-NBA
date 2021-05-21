@@ -39,6 +39,7 @@ games_data <-
 
 ```{r echo = FALSE, include=FALSE}
 source("scripts/chart1.R")
+source("scripts/chart2.R")
 source("scripts/chart3.R")
 source("scripts/Summary information.R")
 source("scripts/Summary table.R")
@@ -72,8 +73,7 @@ kable(summary_table(games_data))
 chart1(games_data)
 ```
 
-This chart was intended to visualize and compare how top8 teams who have the highest Field Goal percentage in general perform in their home and away games.
-The grouped bar chart shows clearly the difference between each team's Field Goal percentage in their home and away games. 
+This chart was intended to visualize and compare how top8 teams who have the highest Field Goal percentage in general perform in their home and away games. The grouped bar chart shows clearly the difference between each team's Field Goal percentage in their home and away games. 
 
 **Insights:**
 
@@ -82,6 +82,17 @@ in both home and away games.
 * 7 out of top 8 teams have a higher average field goal percentage in home games.
 * Pelicans is the only team that has a higher average field goal percentage in
 away games, however, the difference is really small, around 0.2%.
+
+
+### 2. Scatter plot
+``` {r, echo=FALSE, warning=FALSE}
+chart2(games_data)
+```
+The purpose of this chart was to visuzlize the relationship between the points the Lakers, who won the NBA Title in 2019, scored and their 3 point percentage. The league average on 3 point percentage and points is also plotted to show how much better the Lakers are in each of these categories. The goal of this plot was to see if the Lakers' 3 point percentage was to blame for their success in the 2019 season.
+
+**Insights**
+
+The data in this plot seems to be pretty evenly distributed around the league average which may tell that, in terms of the ratio of 3 point percentage to points, the Lakers are fairly average. They may have found success in other areas to lead them to an NBA title.
 
 ### 3. Line Chart: champion team’s (Lakers) PTS throughout the whole season
 
