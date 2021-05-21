@@ -54,4 +54,3 @@ chart2 <- function(games_data) {
 
   return(lakers_fg3_pct_vs_league)
 }
-
