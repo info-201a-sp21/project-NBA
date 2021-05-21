@@ -54,7 +54,7 @@ Lakers_3pt <- ggplot(data = lakers_games) +
   geom_point(mapping = aes(x = Ave_FG3_PCT, y = Ave_PTS,
                            color = "League Average")) +
   labs(y = "Points", x = "3 pt pct") +
-  labs(title = "Lakers 3 Point Percentage vs League Average") +
+  labs(title = "Lakers 3 Point Percentage:Pionts vs League Average") +
   scale_color_manual(values = colors, guide = FALSE)
   
 # Make scatterplot interactive
