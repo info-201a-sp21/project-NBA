@@ -67,12 +67,12 @@ kable(summary_table(games_data))
 
 ## Three Charts
 
-### 1. Double Bar Chart: Top8 teams FG percentage home vs. away game
+### 1. Double Bar Chart: Top 8 teams FG percentage home vs. away game
 
 ``` {r, echo=FALSE, warning=FALSE}
 chart1(games_data)
 ```
-This chart was intended to visualize and compare how top8 teams who have the highest Field Goal percentage in general perform in their home and away games. The grouped bar chart shows clearly the difference between each team's Field Goal percentage in their home and away games. 
+This chart was intended to visualize and compare how top 8 teams who have the highest Field Goal percentage in general perform in their home and away games. The grouped bar chart shows clearly the difference between each team's Field Goal percentage in their home and away games. 
 
 **Insights:**
 
@@ -83,7 +83,7 @@ in both home and away games.
 away games, however, the difference is really small, around 0.2%.
 
 
-### 2. Scatter plot
+### 2. Scatter plot: Lakers 3 Point Percentage:Points
 ``` {r, echo=FALSE, warning=FALSE}
 chart2(games_data)
 ```
