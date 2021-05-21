@@ -69,7 +69,7 @@ kable(summary_table(games_data))
 
 ### 1. Double Bar Chart: Top 8 teams FG percentage home vs. away game
 
-``` {r, echo=FALSE, warning=FALSE}
+``` {r, echo=FALSE}
 chart1(games_data)
 ```
 
@@ -85,7 +85,7 @@ away games, however, the difference is really small, around 0.2%.
 
 
 ### 2. Scatter plot: Lakers 3 Point Percentage:Points
-``` {r, echo=FALSE, warning=FALSE}
+``` {r, echo=FALSE}
 chart2(games_data)
 ```
 The purpose of this chart was to visuzlize the relationship between the points the Lakers, who won the NBA Title in 2019, scored and their 3 point percentage. The league average on 3 point percentage and points is also plotted to show how much better the Lakers are in each of these categories. The goal of this plot was to see if the Lakers' 3 point percentage was to blame for their success in the 2019 season.
