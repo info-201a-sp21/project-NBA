@@ -1,4 +1,4 @@
-games <- read.csv("data/games.csv", stringsAsFactors = FALSE)
+games <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
 
 library(dplyr)
 library(ggplot2)
@@ -15,6 +15,8 @@ NBA_games_2020 <- games %>% filter(SEASON == "2019")
 lakers_home_games <- filter(NBA_games_2020, HOME_TEAM_ID == "1610612747")
 
 lakers_away_games <- filter(NBA_games_2020, VISITOR_TEAM_ID == "1610612747")
+
+lakers_games <- full_join(lakers_away_games, lakers_home_games)
 
 # Compute league averages for 3 point percentage and points
 Ave_FG3_PCT <- NBA_games_2020 %>%
