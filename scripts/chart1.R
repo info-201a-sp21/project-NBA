@@ -1,5 +1,4 @@
 # Double bar graph: FG Percentage for home vs. away.
-# load needed packages
 
 chart1 <- function(games_data) {
 
@@ -34,18 +33,18 @@ chart1 <- function(games_data) {
   top8_teams_avg_fg_chart <-
     ggplot(
       top8_teams_avg_fg,
-      aes(fill = home_away, y = teams_avg_fg, x = team_name)
+      aes(y = teams_avg_fg, x = team_name)
     ) +
-    scale_fill_discrete(labels = c("Away games", "Home games")) +
-    geom_bar(position = "dodge", stat = "identity") +
+    geom_bar(aes(fill = factor(home_away,
+      labels = c("home games", "away games")
+    )),
+    position = "dodge", stat = "identity"
+    ) +
     labs(
       title = "Top8 teams FG percentage home vs. away game",
       x = "Team name", y = "Teams average FG percentage"
     ) +
     theme(legend.title = element_blank())
-
-  # make the map interactive
-  top8_teams_avg_fg_chart <- ggplotly(top8_teams_avg_fg_chart)
 
   return(top8_teams_avg_fg_chart)
 }
