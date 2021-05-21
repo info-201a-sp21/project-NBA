@@ -1,4 +1,4 @@
-games <- read.csv("data/games.csv", stringsAsFactors = FALSE)
+games <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
 
 library(dplyr)
 library(ggplot2)
@@ -15,6 +15,8 @@ NBA_games_2020 <- games %>% filter(SEASON == "2019")
 lakers_home_games <- filter(NBA_games_2020, HOME_TEAM_ID == "1610612747")
 
 lakers_away_games <- filter(NBA_games_2020, VISITOR_TEAM_ID == "1610612747")
+
+lakers_games <- full_join(lakers_away_games, lakers_home_games)
 
 # Compute league averages for 3 point percentage and points
 Ave_FG3_PCT <- NBA_games_2020 %>%
@@ -52,7 +54,7 @@ Lakers_3pt <- ggplot(data = lakers_games) +
   geom_point(mapping = aes(x = Ave_FG3_PCT, y = Ave_PTS,
                            color = "League Average")) +
   labs(y = "Points", x = "3 pt pct") +
-  labs(title = "Lakers 3 Point Percentage vs League Average") +
+  labs(title = "Lakers 3 Point Percentage:Pionts vs League Average") +
   scale_color_manual(values = colors, guide = FALSE)
   
 # Make scatterplot interactive
