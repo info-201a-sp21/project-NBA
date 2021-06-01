@@ -61,18 +61,19 @@ server <- function(input, output) {
     top8_teams_avg_fg_chart <-
       ggplot(
         top8_teams_avg_fg,
-        aes(y = teams_avg_fg, x = input$team_name)
+        aes(y = teams_avg_fg, x = team_name)
       ) +
       geom_bar(aes(fill = factor(home_away,
                                  labels = c("home games", "away games")
       )),
       position = "dodge", stat = "identity"
       ) +
-      scale_y_continuous(limits = c(0.4, 0.5)) +
+      coord_cartesian(ylim=c(0.4,0.5)) +
       labs(
         title = "Top8 teams FG percentage home vs. away game",
         x = "Team name", y = "Teams average FG percentage"
       ) +
+      gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
       theme(legend.title = element_blank())
     
     return(top8_teams_avg_fg_chart)

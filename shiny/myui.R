@@ -6,7 +6,7 @@ library(plotly)
 x_input <- selectInput(
   inputId = "team_name",
   label = "Select one of the TOP8 teams:",
-  choices = list("Bucks", "Heat", "Jazz", "Lakser", "Nuggets", "Pacers", 
+  choices = list("Bucks", "Heat", "Jazz", "Lakers", "Nuggets", "Pacers", 
                  "Pelicans", "Spurs"),
   selected = "Bucks"
 )
