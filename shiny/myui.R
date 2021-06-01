@@ -48,7 +48,7 @@ chart_3_plot <- mainPanel(
 chart_3_panel <- tabPanel(
   "Champion Team",
   titlePanel("Champion team's (Lakers) PTS throughout season 2019"),
-  h4("This chart is try to figure out how many points the 2019 champion, Lakers,
+  h4("This chart is trying to figure out how many points the 2019 champion, Lakers,
      get for each game throughout the whole season. Is the champion team perform
      steady?"),
   sidebarLayout(
@@ -77,8 +77,7 @@ introduction <- fluidPage(
       - comparing the winning rate for each team during home game and away game."), 
   p("2. How influential is the three point field goal for the offense side?
       - comparing the average three point field goal during winning and losing game with the average field goal during winning and losing game in each year."), 
-  p("3. Is the team with the most regular season wins likely to win the final championship?
-      - comparing whether the team with the most wins in regular season is the final champion in each year.")
+  p("3. How many points the 2019 champion, Lakers, get for each game throughout the whole season? Is the champion team perform steady?")
 )
 
 
