@@ -4,9 +4,6 @@ library(plotly)
 
 # chart_3 code
 
-# get opponants' names
-teams <- unique(games_data$HOME_TEAM_NAME)
-
 # sidebar
 chart_3_sidebar <- sidebarPanel(
   h2("here is the lakers game info"),
