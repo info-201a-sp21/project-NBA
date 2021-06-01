@@ -29,7 +29,7 @@ games_data <-
 server <- function(input, output) {
   
   #chart1
-  output$chart1 <- ({
+  output$chart1 <- renderPlotly({
     # summarize average FG percentage for home teams & visitor teams
     home_team_avg_fg <- games_data %>%
       group_by(HOME_TEAM_NAME) %>%
