@@ -1,4 +1,5 @@
 # Double bar graph: FG Percentage for home vs. away.
+# load needed packages
 
 chart1 <- function(games_data) {
 
@@ -36,7 +37,7 @@ chart1 <- function(games_data) {
       aes(y = teams_avg_fg, x = team_name)
     ) +
     geom_bar(aes(fill = factor(home_away,
-      labels = c("home games", "away games")
+                               labels = c("home games", "away games")
     )),
     position = "dodge", stat = "identity"
     ) +
