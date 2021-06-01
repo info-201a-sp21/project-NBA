@@ -81,6 +81,16 @@ introduction <- fluidPage(
 )
 
 
-ui <- navbarPage(title = 'NBA Statistic Prediction',
-                 tabPanel("INTRODUCTION", introduction), tabPanel("Chart 1", chart1_panel), tabPanel("Chart 2", "content"), tabPanel("CHAMPION TEAM", chart_3_panel), tabPanel("SUMMARY INFORMATION")
-                 )
+ui <- fluidPage(
+  includeCSS("style.css"),
+  navbarPage(title = 'NBA Statistic Prediction',
+             tabPanel("INTRODUCTION", introduction), tabPanel("Chart 1", chart1_panel), tabPanel("Chart 2", "content"), tabPanel("CHAMPION TEAM", chart_3_panel), tabPanel("SUMMARY INFORMATION")
+  )
+)
+  
+  
+  
+  
+  
+  
+  
