@@ -3,13 +3,12 @@ library(plotly)
 
 
 # chart_3 code
-
 # sidebar
 chart_3_sidebar <- sidebarPanel(
   h2("here is the lakers game info"),
   sliderInput(
     inputId = "min_score",
-    label = "Score above", min = 77, max = 142, value = 100
+    label = "Lakers' Score above", min = 77, max = 142, value = 105
   )
 )
 
