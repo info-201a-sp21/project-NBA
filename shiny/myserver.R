@@ -69,7 +69,7 @@ server <- function(input, output) {
       ), color = "gold") +
       labs(x = "Date", y = "Lakers points", title = "Season 2019 Lakers points") +
       geom_line(
-        mapping = aes(x = as.Date(GAME_DATE_EST), y = input$min_score),
+        mapping = aes(x = as.Date(GAME_DATE_EST), y = mean(lakers_point)),
         color = "red",
         linetype = "dashed"
       )
