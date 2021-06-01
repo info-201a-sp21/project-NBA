@@ -68,9 +68,9 @@ server <- function(input, output) {
         )
       ), color = "gold") +
       labs(x = "Date", y = "Lakers points", title = "Season 2019 Lakers points") +
-      geom_smooth(
-        mapping = aes(x = as.Date(GAME_DATE_EST), y = lakers_point),
-        se = FALSE, method = "loess", size = 0.5, color = "red",
+      geom_line(
+        mapping = aes(x = as.Date(GAME_DATE_EST), y = input$min_score),
+        color = "red",
         linetype = "dashed"
       )
     
