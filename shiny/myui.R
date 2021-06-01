@@ -18,7 +18,7 @@ chart_3_plot <- mainPanel(
 
 chart_3_panel <- tabPanel(
   "Champion Team",
-  titlePanel("Champion team¡¯s (Lakers) PTS throughout season 2019"),
+  titlePanel("Champion team's (Lakers) PTS throughout season 2019"),
   h4("This chart is trying to figure out how many points the 2019 champion, 
       Lakers, get for each game throughout the whole season. Is the champion 
       team perform steady?"),
