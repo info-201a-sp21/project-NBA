@@ -123,6 +123,10 @@ server <- function(input, output) {
     
     pts <- c(lakers_home_games$PTS_home, lakers_away_games$PTS_away)
     
+    lakers_info <- lakers_games %>%
+      mutate(type = ifelse(HOME_TEAM_NAME == "Lakers", "Home", "Away")) %>%
+      select(FG3_PCT_home, FG3_PCT_away, PTS_home, PTS_away, type)
+    
     # create "colors" vector for Legend in scatterplot
     colors <- c("Lakers Games" = "black", "League Average" = "red")
     
@@ -140,8 +144,7 @@ server <- function(input, output) {
     lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt)
     
     return(lakers_fg3_pct_vs_league)
-  }
-  )
+  })
   
   
   #chart 3
@@ -155,7 +158,6 @@ server <- function(input, output) {
     
     # distinguish home/away game
     lakers_games$type <- ifelse(lakers_games$HOME_TEAM_NAME == "Lakers",
-      
                                                           "Home", "Away"
     )
     

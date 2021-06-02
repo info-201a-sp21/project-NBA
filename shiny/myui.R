@@ -73,8 +73,8 @@ chart1_panel <- tabPanel(
 buttons <- radioButtons(
   inputId = "which_games",
   label = "Select which games you would like to view",
-  choices = list("All Games", "Home", "Away"),
-  selected = "All Games"
+  choices = list("Lakers Games", "League Average"),
+  selected = "League Average"
 )
 
 chart_2_sidebar <- sidebarPanel(
@@ -82,12 +82,21 @@ chart_2_sidebar <- sidebarPanel(
 )
 
 chart_2_plot <- mainPanel(
-  plotOutput("chart2")
+  h4("The purpose of this chart was to visuzlize the relationship between
+     the points the Lakers, who won the NBA Title in 2019, scored and their
+     3 point percentage. The league average on 3 point percentage and points
+     is also plotted to show how much better the Lakers are in each of these
+     categories. The goal of this plot was to see if the Lakers¡¯ 3 point
+     percentage was to blame for their success in the 2019 season."),
+  br(),
+  plotlyOutput("chart2")
 )
 
 chart_2_panel <- tabPanel(
   "chart2",
-  titlePanel("2019 Lakers 3-Point Percentage vs. League Average"),
+  titlePanel("What is Lakers 3-Point Percentage level compared to the
+             League Average?"),
+  hr(),
   sidebarLayout(
     chart_2_sidebar,
     chart_2_plot
