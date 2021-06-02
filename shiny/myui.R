@@ -4,7 +4,7 @@ library(plotly)
 # chart1 code
 # select input
 x_input <- selectInput(
-  inputId = "teamname",
+  inputId = "team_name",
   label = "Select one of the TOP8 teams:",
   choices = list("Bucks", "Heat", "Jazz", "Lakers", "Nuggets", "Pacers", 
                  "Pelicans", "Spurs"),
