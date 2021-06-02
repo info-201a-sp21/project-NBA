@@ -61,7 +61,7 @@ server <- function(input, output) {
     top8_teams_avg_fg_chart <-
       ggplot(
         top8_teams_avg_fg,
-        aes(y = teams_avg_fg, x = input$team_name)
+        aes(y = teams_avg_fg, x = team_name)
       ) +
       geom_bar(aes(fill = factor(home_away,
                                  labels = c("home games", "away games")

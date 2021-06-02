@@ -4,9 +4,9 @@ library(plotly)
 # chart1 code
 # select input
 x_input <- selectInput(
-  inputId = "team_name",
+  inputId = "teamname",
   label = "Select one of the TOP8 teams:",
-  choices = list("Bucks", "Heat", "Jazz", "Lakser", "Nuggets", "Pacers", 
+  choices = list("Bucks", "Heat", "Jazz", "Lakers", "Nuggets", "Pacers", 
                  "Pelicans", "Spurs"),
   selected = "Bucks"
 )
@@ -23,7 +23,7 @@ chart1_plot <- mainPanel(
 )
 
 chart1_panel <- tabPanel(
-  "chart1",
+  "Chart 1",
   titlePanel("TOP8 teams FG percentage Home vs. Away games"),
   sidebarLayout(
     chart1_sidebar,
