@@ -83,8 +83,8 @@ chart1_panel <- tabPanel(
 buttons <- radioButtons(
   inputId = "which_games",
   label = "Select which games you would like to view",
-  choices = list("Lakers Games", "League Average"),
-  selected = "League Average"
+  choices = list("Only Lakers Games", "Compared with League Average"),
+  selected = "Only Lakers Games"
 )
 
 chart_2_sidebar <- sidebarPanel(
@@ -118,7 +118,9 @@ chart_3_sidebar <- sidebarPanel(
   sliderInput(
     inputId = "min_score",
     label = "Lakers' Score above", min = 77, max = 142, value = 105
-  )
+  ),
+  br(),
+  p("Note: red dashed line is the average PTS of selected games")
 )
 
 # show the plot

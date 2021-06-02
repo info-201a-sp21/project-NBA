@@ -106,11 +106,12 @@ server <- function(input, output) {
           aes(y = diff, x = team_name)
         ) +
         geom_bar(
-          position = "dodge", stat = "identity"
+          position = "dodge", stat = "identity", fill="#56B4E9"
         ) +
         labs(
           x = "Team name", y = "Difference of FG percentage between home and away games (%)"
-        ) +
+        )+
+        geom_text(aes(label=diff), vjust=-0.3, size=5) +
         gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
         theme(legend.title = element_blank())
       
@@ -171,12 +172,11 @@ server <- function(input, output) {
     # create "colors" vector for Legend in scatterplot
     colors <- c("Lakers Games" = "black", "League Average" = "red")
     
+    if(input$which_games == "Only Lakers Games"){
     # create a scatterplot comparing the League Average
     # (3 Point Percentage and Points) to the stats in each Lakers Game
     lakers_3pt <- ggplot(data = lakers_games) +
       geom_point(mapping = aes(x = fg3_pct, y = pts, color = "Lakers Games")) +
-      geom_point(mapping = aes(x = ave_fg3_pct, y = ave_pts,
-                               color = "League Average")) +
       labs(y = "Points", x = "3 pt pct") +
       labs(title = "Lakers 3 Point Percentage vs League Average") +
       scale_color_manual(values = colors, guide = "none")
@@ -185,6 +185,21 @@ server <- function(input, output) {
     lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt)
     
     return(lakers_fg3_pct_vs_league)
+    } else {
+      lakers_3pt <- ggplot(data = lakers_games) +
+        geom_point(mapping = aes(x = fg3_pct, y = pts, color = "Lakers Games")) +
+        geom_point(mapping = aes(x = ave_fg3_pct, y = ave_pts,
+                                 color = "League Average")) +
+        labs(y = "Points", x = "3 pt pct") +
+        labs(title = "Lakers 3 Point Percentage vs League Average") +
+        scale_color_manual(values = colors, guide = "none")
+      
+      # Make scatterplot interactive
+      lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt)
+      
+      return(lakers_fg3_pct_vs_league)
+      
+    }
   })
   
   #chart 3
