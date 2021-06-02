@@ -70,7 +70,6 @@ server <- function(input, output) {
       ) +
       coord_cartesian(ylim=c(0.4,0.5)) +
       labs(
-        title = "Top8 teams FG percentage home vs. away game",
         x = "Team name", y = "Teams average FG percentage"
       ) +
       gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
