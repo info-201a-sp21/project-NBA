@@ -89,8 +89,8 @@ chart_2_panel <- tabPanel(
   "chart2",
   titlePanel("2019 Lakers 3-Point Percentage vs. League Average"),
   sidebarLayout(
-    chart2_sidebar,
-    chart2_plot
+    chart_2_sidebar,
+    chart_2_plot
   ))
 
 # chart_3 code
