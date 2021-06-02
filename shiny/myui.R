@@ -19,18 +19,17 @@ chart1_sidebar <- sidebarPanel(
 
 # show plot
 chart1_plot <- mainPanel(
-  br(),
   h4("This chart was intended to visualize and compare how top 8 teams who
      have the highest Field Goal percentage in general perform in their home
      and away games. The grouped bar chart shows clearly the difference
      between each team¡¯s Field Goal percentage in their home and away games."),
-  hr(),
   plotOutput("chart1")
 )
 
 chart1_panel <- tabPanel(
   "Chart 1",
-  titlePanel("TOP8 teams FG percentage Home vs. Away games"),
+  titlePanel("Does Home and Away game affect TOP8 teams FG percentage?"),
+  hr(),
   sidebarLayout(
     chart1_sidebar,
     chart1_plot
@@ -48,12 +47,10 @@ chart_3_sidebar <- sidebarPanel(
 
 # show the plot
 chart_3_plot <- mainPanel(
-  br(),
   h4("This chart is trying to figure out how many points the 2019 champion,
       Lakers, get for each game throughout the whole season. Is the champion
       team perform steady? The red line is the mean PTS from selected range,
       so the more closer to the red line, the more steady they perform."),
-  hr(),
   plotlyOutput("chart3")
 )
 
@@ -61,10 +58,9 @@ chart_3_panel <- tabPanel(
   "Champion Team",
   tags$p(
     id = "titlePanel",
-    "Champion team's (Lakers) PTS throughout season 2019"
+    "Does Champion team's (Lakers) perform steady throughout season 2019?"
   ),
-
-
+  hr(),
   sidebarLayout(
     chart_3_sidebar,
     chart_3_plot
