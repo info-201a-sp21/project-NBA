@@ -43,10 +43,10 @@ team_name_input <- selectInput(
   selected = "Bucks"
 )
 
-values_or_ratios <- radioButtons(
-  inputId = "values_ratios",
-  label = h3("show values or ratios"),
-  choices = list("Values" = "values", "Ratios" = "ratios")
+values_or_diff <- radioButtons(
+  inputId = "values_difference",
+  label = h3("Show values or difference:"),
+  choices = list("Values" = "values", "Difference" = "difference")
 )
 
 # sidebar
@@ -56,7 +56,7 @@ chart1_sidebar <- sidebarPanel(
   br(),
   p("Note: Top 8 teams are measured by average FG percentage."),
   br(),
-  values_or_ratios
+  values_or_diff
 )
 
 # show plot
@@ -64,7 +64,7 @@ chart1_plot <- mainPanel(
   h4("This chart was intended to visualize and compare how top 8 teams who
      have the highest Field Goal percentage in general perform in their home
      and away games. The grouped bar chart shows clearly the difference
-     between each team??s Field Goal percentage in their home and away games."),
+     between each team's Field Goal percentage in their home and away games."),
   br(),
   plotOutput("chart1")
 )

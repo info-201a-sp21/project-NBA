@@ -78,7 +78,7 @@ server <- function(input, output) {
                     home_away_diff, "%."))
     })
     
-    if(input$values_ratios == "values") {
+    if(input$values_difference == "values") {
       # create a grouped barchart for teams' Top8 average field goal percentage
       top8_teams_avg_fg_chart <-
         ggplot(
