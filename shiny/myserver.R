@@ -148,10 +148,11 @@ server <- function(input, output) {
         Field_Goal_Percentage = sum(FG_PCT_home)
       ) %>%
       arrange(Field_Goal_Percentage)
-    names(all_teams_data)[1:4] <- c("Team Name", "Rebounds", "Free Throw %",
-                                    "Field Goal %" )
+    names(all_teams_data)[1:4] <- c("Team Name", "Rebounds", "Free Throw
+                                    Percentage", "Field Goal Percentage" )
     
     return(all_teams_data)
-  })
+  },
+  striped = TRUE)
 }
 
