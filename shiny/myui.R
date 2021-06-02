@@ -35,18 +35,28 @@ introduction <- fluidPage(
 
 # chart1 code
 # select input
-x_input <- selectInput(
+team_name_input <- selectInput(
   inputId = "team_name",
-  label = "Select one of the TOP 8 teams:",
+  label = "Select one of the TOP 8 teams to see the difference:",
   choices = list("Bucks", "Heat", "Jazz", "Lakers", "Nuggets", "Pacers", 
                  "Pelicans", "Spurs"),
   selected = "Bucks"
 )
 
+values_or_ratios <- radioButtons(
+  inputId = "values_ratios",
+  label = h3("show values or ratios"),
+  choices = list("Values" = "values", "Ratios" = "ratios")
+)
+
 # sidebar
 chart1_sidebar <- sidebarPanel(
- x_input,
- p("Note: Top 8 teams are measured by average FG percentage")
+  team_name_input,
+  textOutput("difference"),
+  br(),
+  p("Note: Top 8 teams are measured by average FG percentage."),
+  br(),
+  values_or_ratios
 )
 
 # show plot
@@ -61,7 +71,7 @@ chart1_plot <- mainPanel(
 
 chart1_panel <- tabPanel(
   "Chart 1",
-  titlePanel("Does Home and Away game affect TOP 8 teams FG percentage?"),
+  titlePanel("Does Home or Away games affect TOP 8 teams' FG percentage?"),
   hr(),
   sidebarLayout(
     chart1_sidebar,
@@ -140,10 +150,3 @@ ui <- fluidPage(
              tabPanel("SUMMARY INFORMATION", summary)
   )
 )
-  
-  
-  
-  
-  
-  
-  

@@ -46,36 +46,77 @@ server <- function(input, output) {
       left_join(home_team_avg_fg, visitor_team_avg_fg, by = "team_name")
     
     # calculate average FG percentage of both home and away games
-    # for each team; select top 8 teams with highest average value
+    # for each team and the difference between home and away games;
+    # select top 8 teams with highest average value
     top8_teams_avg_fg <- teams_avg_fg %>%
       mutate(average = (home_avg_fg_perc + away_avg_fg_perc) / 2) %>%
       arrange(-average) %>%
       top_n(8) %>%
       select(team_name, home_avg_fg_perc, away_avg_fg_perc)
     
+    # dataset that includes difference 
+    fg_perc_diff_df <- top8_teams_avg_fg %>% 
+      mutate(diff = abs(round((home_avg_fg_perc - away_avg_fg_perc) *100, 2)))
+    
+    # pull the difference for select teams
+    home_away_diff <- fg_perc_diff_df %>% 
+      filter(team_name == input$team_name) %>%
+      pull(diff)
+    
     # reshape data set
     top8_teams_avg_fg <-
       gather(top8_teams_avg_fg, home_away, teams_avg_fg, -team_name)
     
-    # create a grouped barchart for teams' Top8 average field goal percentage
-    top8_teams_avg_fg_chart <-
-      ggplot(
-        top8_teams_avg_fg,
-        aes(y = teams_avg_fg, x = team_name)
-      ) +
-      geom_bar(aes(fill = factor(home_away,
-                                 labels = c("home games", "away games")
-      )),
-      position = "dodge", stat = "identity"
-      ) +
-      coord_cartesian(ylim=c(0.4,0.5)) +
-      labs(
-        x = "Team name", y = "Teams average FG percentage"
-      ) +
-      gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
-      theme(legend.title = element_blank())
+    output$difference <- renderText({
+      if( home_away_diff > 0) {
+        home_away <- ("home games")
+      } else {
+        home_away <- ("away games")
+      }
+      return(paste0(input$team_name, " performs better in ", home_away,
+                    "; the difference between is ",
+                    home_away_diff, "%."))
+    })
     
-    return(top8_teams_avg_fg_chart)
+    if(input$values_ratios == "values") {
+      # create a grouped barchart for teams' Top8 average field goal percentage
+      top8_teams_avg_fg_chart <-
+        ggplot(
+          top8_teams_avg_fg,
+          aes(y = teams_avg_fg, x = team_name)
+        ) +
+        geom_bar(aes(fill = factor(home_away,
+                                   labels = c("away games", "home games")
+        )),
+        position = "dodge", stat = "identity"
+        ) +
+        coord_cartesian(ylim=c(0.40,0.50)) +
+        labs(
+          x = "Team name", y = "Teams average FG percentage"
+        ) +
+        gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
+        theme(legend.title = element_blank())
+      
+      return(top8_teams_avg_fg_chart)
+    } else {
+      # create a grouped barchart for teams' Top8 average field goal percentage
+      top8_teams_diff_chart <-
+        ggplot(
+          fg_perc_diff_df,
+          aes(y = diff, x = team_name)
+        ) +
+        geom_bar(
+          position = "dodge", stat = "identity"
+        ) +
+        labs(
+          x = "Team name", y = "Difference of FG percentage between home and away games (%)"
+        ) +
+        gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
+        theme(legend.title = element_blank())
+      
+      return(top8_teams_diff_chart)
+    }
+    
   })
   
   #chart 2
@@ -143,7 +184,6 @@ server <- function(input, output) {
   }
   )
   
-  
   #chart 3
   output$chart3 <- renderPlotly({
     
@@ -155,8 +195,8 @@ server <- function(input, output) {
     
     # distinguish home/away game
     lakers_games$type <- ifelse(lakers_games$HOME_TEAM_NAME == "Lakers",
-      
-                                                          "Home", "Away"
+                                
+                                "Home", "Away"
     )
     
     # get lakers point for each game
@@ -221,4 +261,3 @@ server <- function(input, output) {
   },
   striped = TRUE)
 }
-
