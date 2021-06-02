@@ -5,7 +5,7 @@ library(plotly)
 # select input
 x_input <- selectInput(
   inputId = "team_name",
-  label = "Select one of the TOP8 teams:",
+  label = "Select one of the TOP 8 teams:",
   choices = list("Bucks", "Heat", "Jazz", "Lakers", "Nuggets", "Pacers", 
                  "Pelicans", "Spurs"),
   selected = "Bucks"
@@ -14,7 +14,7 @@ x_input <- selectInput(
 # sidebar
 chart1_sidebar <- sidebarPanel(
  x_input,
- p("Note: Top8 teams are measured by average FG percentage")
+ p("Note: Top 8 teams are measured by average FG percentage")
 )
 
 # show plot
@@ -24,12 +24,36 @@ chart1_plot <- mainPanel(
 
 chart1_panel <- tabPanel(
   "chart1",
-  titlePanel("TOP8 teams FG percentage Home vs. Away games"),
+  titlePanel("TOP 8 teams FG percentage Home vs. Away games"),
   sidebarLayout(
     chart1_sidebar,
     chart1_plot
   )
 )
+
+#chart 2 code
+buttons <- radioButtons(
+  inputId = "which_games",
+  label = "Select which games you would like to view",
+  choices = list("All Games", "Home", "Away"),
+  selected = "All Games"
+)
+
+chart_2_sidebar <- sidebarPanel(
+  buttons
+)
+
+chart_2_plot <- mainPanel(
+  plotOutput("chart2")
+)
+
+chart_2_panel <- tabPanel(
+  "chart2",
+  titlePanel("2019 Lakers 3-Point Percentage vs. League Average"),
+  sidebarLayout(
+    chart2_sidebar,
+    chart2_plot
+  ))
 
 # chart_3 code
 # sidebar
@@ -101,7 +125,7 @@ ui <- fluidPage(
   navbarPage(title = 'NBA Statistic Prediction',
              tabPanel("INTRODUCTION", introduction),
              tabPanel("TOP 8 TEAMS", chart1_panel),
-             tabPanel("Chart 2", "content"),
+             tabPanel("LAKERS 3-PT %", chart_2_panel),
              tabPanel("CHAMPION TEAM", chart_3_panel),
              tabPanel("SUMMARY INFORMATION")
   )
