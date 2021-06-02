@@ -1,6 +1,38 @@
 library(shiny)
 library(plotly)
 
+# Introduction Page
+introduction <- fluidPage(
+  h1("NBA Data Analytics"), 
+  hr(),
+  br(),
+  p("Every year, there are lottery gamblelings about the championship before
+    the off-season start. We, as NBA fans, want to understand what factors
+    could influence the players' performcane which in turn dertermines
+    the candidate teams."),
+  
+  p("This informatics projected is based on dataset of",
+    strong("2019 NBA"),
+    "games. We analyzed 30 teams' performance based on scores, field goal
+     percentage, 3 pointer percentage and other statistics throughout
+     the season."),
+  
+  p("This dataset can be found through this",
+    a(href="https://www.kaggle.com/nathanlauga/nba-games", "NBA"), "link."),
+  
+  h3("Our Analysis"),
+  p("Below are the questions we seek to answer from the dataset"),
+  p("1. Will the home game and away game affect the teams' performances?
+      - comparing the winning rate for each team during home game
+      and away game."), 
+  p("2. How influential is the three point field goal for the offense side?
+      - comparing the average three point field goal during winning and
+      losing game with the average field goal during winning and losing
+      game in each year."), 
+  p("3. How many points the 2019 champion, Lakers, get for each game
+    throughout the whole season? Is the champion team perform steady?")
+)
+
 # chart1 code
 # select input
 x_input <- selectInput(
@@ -19,12 +51,18 @@ chart1_sidebar <- sidebarPanel(
 
 # show plot
 chart1_plot <- mainPanel(
+  h4("This chart was intended to visualize and compare how top 8 teams who
+     have the highest Field Goal percentage in general perform in their home
+     and away games. The grouped bar chart shows clearly the difference
+     between each team??s Field Goal percentage in their home and away games."),
+  br(),
   plotOutput("chart1")
 )
 
 chart1_panel <- tabPanel(
-  "chart1",
-  titlePanel("TOP 8 teams FG percentage Home vs. Away games"),
+  "Chart 1",
+  titlePanel("Does Home and Away game affect TOP 8 teams FG percentage?"),
+  hr(),
   sidebarLayout(
     chart1_sidebar,
     chart1_plot
@@ -66,6 +104,11 @@ chart_3_sidebar <- sidebarPanel(
 
 # show the plot
 chart_3_plot <- mainPanel(
+  h4("This chart is trying to figure out how many points the 2019 champion,
+      Lakers, get for each game throughout the whole season. Is the champion
+      team perform steady? The red line is the mean PTS from selected range,
+      so the more closer to the red line, the more steady they perform."),
+  br(),
   plotlyOutput("chart3")
 )
 
@@ -73,52 +116,19 @@ chart_3_panel <- tabPanel(
   "Champion Team",
   tags$p(
     id = "titlePanel",
-    "Champion team's (Lakers) PTS throughout season 2019"
+    "Does Champion team's (Lakers) perform steady throughout season 2019?"
   ),
-  
-  
-  h4("This chart is trying to figure out how many points the 2019 champion,
-      Lakers, get for each game throughout the whole season. Is the champion
-      team perform steady?"),
-
+  hr(),
   sidebarLayout(
     chart_3_sidebar,
     chart_3_plot
   )
 )
 
-# Introduction Page
-introduction <- fluidPage(
-  h1("NBA Data Analytics"), 
-  hr(),
-  br(),
-  p("Every year, there are lottery gamblelings about the championship before
-    the off-season start. We, as NBA fans, want to understand what factors
-    could influence the players' performcane which in turn dertermines
-    the candidate teams."),
-  
-  p("This informatics projected is based on dataset of",
-    strong("2019 NBA"),
-    "games. We analyzed 30 teams' performance based on scores, field goal
-     percentage, 3 pointer percentage and other statistics throughout
-     the season."),
-  
-  p("This dataset can be found through this",
-    a(href="https://www.kaggle.com/nathanlauga/nba-games", "NBA"), "link."),
-  
-  h3("Our Analysis"),
-  p("Below are the questions we seek to answer from the dataset"),
-  p("1. Will the home game and away game affect the teams' performances?
-      - comparing the winning rate for each team during home game
-      and away game."), 
-  p("2. How influential is the three point field goal for the offense side?
-      - comparing the average three point field goal during winning and
-      losing game with the average field goal during winning and losing
-      game in each year."), 
-  p("3. How many points the 2019 champion, Lakers, get for each game
-    throughout the whole season? Is the champion team perform steady?")
+summary <- mainPanel(
+  h4("summary table"),
+  tableOutput("summary")
 )
-
 
 ui <- fluidPage(
   includeCSS("style.css"),
@@ -127,7 +137,7 @@ ui <- fluidPage(
              tabPanel("TOP 8 TEAMS", chart1_panel),
              tabPanel("LAKERS 3-PT %", chart_2_panel),
              tabPanel("CHAMPION TEAM", chart_3_panel),
-             tabPanel("SUMMARY INFORMATION")
+             tabPanel("SUMMARY INFORMATION", summary)
   )
 )
   

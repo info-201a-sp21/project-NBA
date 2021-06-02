@@ -70,7 +70,6 @@ server <- function(input, output) {
       ) +
       coord_cartesian(ylim=c(0.4,0.5)) +
       labs(
-        title = "Top8 teams FG percentage home vs. away game",
         x = "Team name", y = "Teams average FG percentage"
       ) +
       gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
@@ -156,7 +155,8 @@ server <- function(input, output) {
     
     # distinguish home/away game
     lakers_games$type <- ifelse(lakers_games$HOME_TEAM_NAME == "Lakers",
-                                "Home", "Away"
+      
+                                                          "Home", "Away"
     )
     
     # get lakers point for each game
@@ -200,5 +200,25 @@ server <- function(input, output) {
     return(lakers_pts_chart)
     
   })
+  
+  #summary table
+  output$summary <-renderTable({
+    
+    # Table
+    all_teams_data <- games_data %>%
+      select(HOME_TEAM_NAME, REB_home, FT_PCT_home, FG_PCT_home) %>%
+      group_by(HOME_TEAM_NAME) %>%
+      summarize(
+        Rebound = sum(REB_home),
+        Free_Throw_Percentage = sum(FT_PCT_home),
+        Field_Goal_Percentage = sum(FG_PCT_home)
+      ) %>%
+      arrange(Field_Goal_Percentage)
+    names(all_teams_data)[1:4] <- c("Team Name", "Rebounds", "Free Throw
+                                    Percentage", "Field Goal Percentage" )
+    
+    return(all_teams_data)
+  },
+  striped = TRUE)
 }
 
