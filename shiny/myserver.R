@@ -176,26 +176,38 @@ server <- function(input, output) {
     # create a scatterplot comparing the League Average
     # (3 Point Percentage and Points) to the stats in each Lakers Game
     lakers_3pt <- ggplot(data = lakers_games) +
-      geom_point(mapping = aes(x = fg3_pct, y = pts, color = "Lakers Games")) +
+      geom_point(mapping = aes(x = fg3_pct, y = pts, color = "Lakers Games",
+                               text = paste(
+                                 "Three point %: ", fg3_pct,
+                                 "<br>Total points: ", pts
+                               ))) +
       labs(y = "Points", x = "3 pt pct") +
       labs(title = "Lakers 3 Point Percentage vs League Average") +
       scale_color_manual(values = colors, guide = "none")
     
     # Make scatterplot interactive
-    lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt)
+    lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt, tooltip = "text")
     
     return(lakers_fg3_pct_vs_league)
     } else {
       lakers_3pt <- ggplot(data = lakers_games) +
-        geom_point(mapping = aes(x = fg3_pct, y = pts, color = "Lakers Games")) +
+        geom_point(mapping = aes(x = fg3_pct, y = pts, color = "Lakers Games",
+                                 text = paste(
+                                   "Three Point %: ", fg3_pct,
+                                   "<br>Total Points: ", pts
+                                 ))) +
         geom_point(mapping = aes(x = ave_fg3_pct, y = ave_pts,
-                                 color = "League Average")) +
+                                 color = "League Average",
+                                 text = paste(
+                                   "League Average Three Point %: ", ave_fg3_pct,
+                                   "<br>League Average Total Points: ", pts
+                                 ))) +
         labs(y = "Points", x = "3 pt pct") +
         labs(title = "Lakers 3 Point Percentage vs League Average") +
         scale_color_manual(values = colors, guide = "none")
       
       # Make scatterplot interactive
-      lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt)
+      lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt, tooltip = "text")
       
       return(lakers_fg3_pct_vs_league)
       
@@ -272,7 +284,7 @@ server <- function(input, output) {
       ) %>%
       arrange(Field_Goal_Percentage)
     names(all_teams_data)[1:4] <- c("Team Name", "Rebounds", "Free Throw
-                                    Percentage", "Field Goal Percentage" )
+                                    Percentage", "Field Goal Percentage")
     
     return(all_teams_data)
   },
