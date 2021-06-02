@@ -90,7 +90,8 @@ server <- function(input, output) {
     
     # distinguish home/away game
     lakers_games$type <- ifelse(lakers_games$HOME_TEAM_NAME == "Lakers",
-                                "Home", "Away"
+      
+                                                          "Home", "Away"
     )
     
     # get lakers point for each game
