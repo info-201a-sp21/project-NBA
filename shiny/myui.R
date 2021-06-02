@@ -42,6 +42,12 @@ chart_3_sidebar <- sidebarPanel(
 
 # show the plot
 chart_3_plot <- mainPanel(
+  br(),
+  h4("This chart is trying to figure out how many points the 2019 champion,
+      Lakers, get for each game throughout the whole season. Is the champion
+      team perform steady? The red line is the mean PTS from selected range,
+      so the more closer to the red line, the more steady they perform."),
+  hr(),
   plotlyOutput("chart3")
 )
 
@@ -51,11 +57,7 @@ chart_3_panel <- tabPanel(
     id = "titlePanel",
     "Champion team's (Lakers) PTS throughout season 2019"
   ),
-  
-  
-  h4("This chart is trying to figure out how many points the 2019 champion,
-      Lakers, get for each game throughout the whole season. Is the champion
-      team perform steady?"),
+
 
   sidebarLayout(
     chart_3_sidebar,
