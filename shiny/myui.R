@@ -35,18 +35,28 @@ introduction <- fluidPage(
 
 # chart1 code
 # select input
-x_input <- selectInput(
+team_name_input <- selectInput(
   inputId = "team_name",
-  label = "Select one of the TOP 8 teams:",
+  label = "Select one of the TOP 8 teams to see the difference:",
   choices = list("Bucks", "Heat", "Jazz", "Lakers", "Nuggets", "Pacers", 
                  "Pelicans", "Spurs"),
   selected = "Bucks"
 )
 
+values_or_diff <- radioButtons(
+  inputId = "values_difference",
+  label = h3("Show values or difference:"),
+  choices = list("Values" = "values", "Difference" = "difference")
+)
+
 # sidebar
 chart1_sidebar <- sidebarPanel(
- x_input,
- p("Note: Top 8 teams are measured by average FG percentage")
+  team_name_input,
+  textOutput("difference"),
+  br(),
+  p("Note: Top 8 teams are measured by average FG percentage."),
+  br(),
+  values_or_diff
 )
 
 # show plot
@@ -54,14 +64,14 @@ chart1_plot <- mainPanel(
   h4("This chart was intended to visualize and compare how top 8 teams who
      have the highest Field Goal percentage in general perform in their home
      and away games. The grouped bar chart shows clearly the difference
-     between each team??s Field Goal percentage in their home and away games."),
+     between each team's Field Goal percentage in their home and away games."),
   br(),
   plotOutput("chart1")
 )
 
 chart1_panel <- tabPanel(
   "Chart 1",
-  titlePanel("Does Home and Away game affect TOP 8 teams FG percentage?"),
+  titlePanel("Does Home or Away games affect TOP 8 teams' FG percentage?"),
   hr(),
   sidebarLayout(
     chart1_sidebar,
@@ -149,10 +159,3 @@ ui <- fluidPage(
              tabPanel("SUMMARY INFORMATION", summary)
   )
 )
-  
-  
-  
-  
-  
-  
-  
