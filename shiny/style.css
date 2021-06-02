@@ -1,0 +1,11 @@
+h1 {
+  color: green;
+}
+
+#titlePanel {
+  color:green;
+  background-color:lightblue;
+  height: 45px;
+  font-family: Papyrus, fantasy;
+  font-size: 30px;
+}

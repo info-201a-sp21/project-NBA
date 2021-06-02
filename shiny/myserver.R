@@ -29,7 +29,7 @@ games_data <-
 server <- function(input, output) {
   
   #chart1
-  output$chart1 <- renderPlotly({
+  output$chart1 <- renderPlot({
     # summarize average FG percentage for home teams & visitor teams
     home_team_avg_fg <- games_data %>%
       group_by(HOME_TEAM_NAME) %>%
@@ -68,11 +68,12 @@ server <- function(input, output) {
       )),
       position = "dodge", stat = "identity"
       ) +
-      scale_y_continuous(limits = c(0.4, 0.5)) +
+      coord_cartesian(ylim=c(0.4,0.5)) +
       labs(
         title = "Top8 teams FG percentage home vs. away game",
         x = "Team name", y = "Teams average FG percentage"
       ) +
+      gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
       theme(legend.title = element_blank())
     
     return(top8_teams_avg_fg_chart)
@@ -84,7 +85,8 @@ server <- function(input, output) {
     # select Lakers games
     lakers_games <- games_data %>%
       filter(HOME_TEAM_NAME == "Lakers" | VISITOR_TEAM_NAME == "Lakers") %>%
-      select(GAME_DATE_EST, PTS_home, PTS_away, HOME_TEAM_NAME, VISITOR_TEAM_NAME)
+      select(GAME_DATE_EST, PTS_home, PTS_away,
+             HOME_TEAM_NAME, VISITOR_TEAM_NAME)
     
     # distinguish home/away game
     lakers_games$type <- ifelse(lakers_games$HOME_TEAM_NAME == "Lakers",
@@ -93,7 +95,8 @@ server <- function(input, output) {
     
     # get lakers point for each game
     lakers_games$lakers_point <- ifelse(lakers_games$type == "Home",
-                                        lakers_games$PTS_home, lakers_games$PTS_away
+                                        lakers_games$PTS_home,
+                                        lakers_games$PTS_away
     )
     
     # get opponent's name
@@ -118,7 +121,8 @@ server <- function(input, output) {
           "<br>Type: ", type, "game"
         )
       ), color = "gold") +
-      labs(x = "Date", y = "Lakers points", title = "Season 2019 Lakers points") +
+      labs(x = "Date", y = "Lakers points",
+           title = "Season 2019 Lakers points") +
       geom_line(
         mapping = aes(x = as.Date(GAME_DATE_EST), y = mean(lakers_point)),
         color = "red",
