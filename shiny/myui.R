@@ -3,31 +3,34 @@ library(plotly)
 
 # Introduction Page
 introduction <- fluidPage(
-  h1("NBA Data Analytics"), 
+  h1("NBA Data Analytics"),
   hr(),
   br(),
   p("Every year, there are lottery gamblelings about the championship before
     the off-season start. We, as NBA fans, want to understand what factors
     could influence the players' performcane which in turn dertermines
     the candidate teams."),
-  
-  p("This informatics projected is based on dataset of",
+  p(
+    "This informatics projected is based on dataset of",
     strong("2019 NBA"),
     "games. We analyzed 30 teams' performance based on scores, field goal
      percentage, 3 pointer percentage and other statistics throughout
-     the season."),
-  
-  p("This dataset can be found through this",
-    a(href="https://www.kaggle.com/nathanlauga/nba-games", "NBA"), "link."),
-  
+     the season."
+  ),
+  p(
+    "This dataset can be found through this",
+    a(href = "https://www.kaggle.com/nathanlauga/nba-games", "NBA"), "link."
+  ),
   h3("Our Analysis"),
   p("Below are the questions we seek to answer from the dataset"),
-  p("1. Does Home or Away games affect TOP 8 teams' FG percentage?"), 
-  p("2. How does the 2019 Lakers 3-Point Percentage compare to the League Average?"), 
+  p("1. Does Home or Away games affect TOP 8 teams' FG percentage?"),
+  p("2. How does the 2019 Lakers 3-Point Percentage compare to the League
+    Average?"),
   p("3. How many points the 2019 champion, Lakers, get for each game
     throughout the whole season? Is the champion team perform steady?"),
-  
-  img(src = "../img/teams_logo.jpg", height = 72, width = 72)
+  br(),
+  img(src = "https://www.greenberglawoffice.com/wp-content/uploads/NBA-Teams.jpg
+      ", width = "60%", height = "60%")
 )
 
 # chart1 code
@@ -35,8 +38,10 @@ introduction <- fluidPage(
 team_name_input <- selectInput(
   inputId = "team_name",
   label = "Select one of the TOP 8 teams to see the difference:",
-  choices = list("Bucks", "Heat", "Jazz", "Lakers", "Nuggets", "Pacers", 
-                 "Pelicans", "Spurs"),
+  choices = list(
+    "Bucks", "Heat", "Jazz", "Lakers", "Nuggets", "Pacers",
+    "Pelicans", "Spurs"
+  ),
   selected = "Bucks"
 )
 
@@ -76,7 +81,7 @@ chart1_panel <- tabPanel(
   )
 )
 
-#chart 2 code
+# chart 2 code
 buttons <- radioButtons(
   inputId = "which_games",
   label = "Select which games you would like to view",
@@ -104,13 +109,15 @@ chart_2_plot <- mainPanel(
 
 
 
-chart_2_panel <- tabPanel("Chart 2",
+chart_2_panel <- tabPanel(
+  "Chart 2",
   titlePanel("How does the 2019 Lakers 3-Point Percentage
              compare to the League Average?"),
   sidebarLayout(
     chart_2_sidebar,
     chart_2_plot
-  ))
+  )
+)
 
 # chart_3 code
 # sidebar
@@ -146,7 +153,7 @@ chart_3_panel <- tabPanel(
 
 
 summary <- fluidPage(
-  h2("First Takeaway"), 
+  h2("First Takeaway"),
   hr(),
   p("From the first graph, 7 out of 8 teams have a higher home games field goal
     percentages than away games. Last year's championship Lakers has a field
@@ -156,30 +163,34 @@ summary <- fluidPage(
     factor that could determine the result of the games."),
   h2("Second Takeaway"),
   hr(),
-  p("The takeaway from the second chart is that Lakers’s 3 point percentage during 
-  away games was more closely to the league’s average. 
-  Lakers performed better at home game than away games during the 2019 season. However, 
-    Lakers did not have the highest 3 point percentage, thus only 3 point percentage 
-    does not have a significant role in determine the result of the games."),
+  p("The takeaway from the second chart is that Lakers's 3 point percentage
+    during away games was more closely to the league's average. Lakers
+    performed better at home game than away games during the 2019 season.
+    However, Lakers did not have the highest 3 point percentage, thus only 3
+    point percentage does not have a significant role in determine the result
+    of the games."),
   h2("Third Takeaway"),
   hr(),
-  p("The last takeaway from the Lakers’s every game points during 2019 season is that at the 115 points threshold, 
-    the Lakers performed close to its average 113 whether it is home or away games.  
-    Although, at the beginning of the season October 12, 2019, the Lakers had its lowest points, 
-    this is probably because they had not adjust to the intense competition. One month laster, 
-    they started to have a steady performance and got close to the team’s average. "),
+  p("The last takeaway from the Lakers's every game points during 2019 season
+    is that at the 115 points threshold, the Lakers performed close to its
+    average 113 whether it is home or away games. Although, at the beginning
+    of the season October 12, 2019, the Lakers had its lowest points, this
+    is probably because they had not adjust to the intense competition. One
+    month laster, they started to have a steady performance and got close to
+    the team's average."),
   h2("Summary Table"),
   hr(),
   tableOutput("summary")
 )
-  
+
 ui <- fluidPage(
   includeCSS("style.css"),
-  navbarPage(title = '2019 NBA Season Statistical Analysis',
-             tabPanel("INTRODUCTION", introduction),
-             tabPanel("HOME VS. AWAY FG %", chart1_panel),
-             tabPanel("LAKERS 3-PT %", chart_2_panel),
-             tabPanel("CHAMPION TEAM", chart_3_panel),
-             tabPanel("SUMMARY INFORMATION", summary)
+  navbarPage(
+    title = "2019 NBA Season Statistical Analysis",
+    tabPanel("INTRODUCTION", introduction),
+    tabPanel("HOME VS. AWAY FG %", chart1_panel),
+    tabPanel("LAKERS 3-PT %", chart_2_panel),
+    tabPanel("CHAMPION TEAM", chart_3_panel),
+    tabPanel("SUMMARY INFORMATION", summary)
   )
 )
