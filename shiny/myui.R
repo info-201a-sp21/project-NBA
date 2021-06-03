@@ -51,7 +51,7 @@ values_or_diff <- radioButtons(
   choices = list("Values" = "values", "Difference" = "difference")
 )
 
-# sidebar
+#create sidebar
 chart1_sidebar <- sidebarPanel(
   team_name_input,
   textOutput("difference"),
@@ -71,6 +71,7 @@ chart1_plot <- mainPanel(
   plotOutput("chart1")
 )
 
+#consolidate
 chart1_panel <- tabPanel(
   "Chart 1",
   titlePanel("Does Home or Away games affect TOP 8 teams' FG percentage?"),
@@ -82,6 +83,7 @@ chart1_panel <- tabPanel(
 )
 
 # chart 2 code
+# create radio buttons
 buttons <- radioButtons(
   inputId = "which_games",
   label = "Select which games you would like to view",
@@ -89,10 +91,12 @@ buttons <- radioButtons(
   selected = "All Games"
 )
 
+#create sidebar
 chart_2_sidebar <- sidebarPanel(
   buttons
 )
 
+# show plot
 chart_2_plot <- mainPanel(
   h4("The purpose of this chart was to visuzlize the relationship between
      the points the Lakers, who won the NBA Title in 2019, scored and their
@@ -107,8 +111,7 @@ chart_2_plot <- mainPanel(
   plotlyOutput("chart2")
 )
 
-
-
+#consolidate
 chart_2_panel <- tabPanel(
   "Chart 2",
   titlePanel("How does the 2019 Lakers 3-Point Percentage
@@ -139,6 +142,7 @@ chart_3_plot <- mainPanel(
   plotlyOutput("chart3")
 )
 
+#consolidate
 chart_3_panel <- tabPanel(
   "Champion Team",
   tags$p(
@@ -152,7 +156,7 @@ chart_3_panel <- tabPanel(
   )
 )
 
-
+#create summary page
 summary <- fluidPage(
   h2("First Takeaway"),
   hr(),
@@ -184,6 +188,7 @@ summary <- fluidPage(
   tableOutput("summary")
 )
 
+#consolidate into ui page
 ui <- fluidPage(
   includeCSS("style.css"),
   navbarPage(
