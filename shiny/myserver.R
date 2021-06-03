@@ -126,7 +126,7 @@ server <- function(input, output) {
   output$chart2 <- renderPlotly({
     nba_games_2020 <- games_data %>% filter(SEASON == "2019")
 
-    # Filter for all Lakers games
+    # Filter Lakers games
     lakers_home_games <- filter(nba_games_2020, HOME_TEAM_ID == "1610612747")
     lakers_away_games <- filter(nba_games_2020, VISITOR_TEAM_ID == "1610612747")
     lakers_games <- full_join(lakers_away_games, lakers_home_games)
@@ -173,7 +173,7 @@ server <- function(input, output) {
       "Lakers Away Games" = "black", "Lakers Home Games" = "black"
     )
 
-    # create a scatterplot comparing the League Average
+    # create scatterplots comparing the League Average
     # (3 Point Percentage and Points) to the stats in each Lakers Game
     lakers_3pt_away <- ggplot(data = lakers_away_games) +
       geom_point(mapping = aes(
@@ -237,13 +237,14 @@ server <- function(input, output) {
       labs(title = "Lakers 3 Point Percentage vs League Average") +
       scale_color_manual(values = colors, guide = "none")
 
-    # Make scatterplot interactive
+    # Make scatterplots interactive
     lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt, tooltip = "text")
 
     away_lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt_away, tooltip = "text")
 
     home_lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt_home, tooltip = "text")
 
+    # Make different charts appear if different buttons are selected
     if (input$which_games == "All Games") {
       return(lakers_fg3_pct_vs_league)
     }
