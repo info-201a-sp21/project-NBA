@@ -82,12 +82,14 @@ chart_2_sidebar <- sidebarPanel(
 )
 
 chart_2_plot <- mainPanel(
-  plotOutput("chart2")
+  h4("graph description"
+  ),
+  plotlyOutput(outputId = "chart2")
 )
 
-chart_2_panel <- tabPanel(
-  "chart2",
-  titlePanel("2019 Lakers 3-Point Percentage vs. League Average"),
+chart_2_panel <- tabPanel("Chart 2",
+  titlePanel("How does the 2019 Lakers 3-Point Percentage
+             compare to the League Average?"),
   sidebarLayout(
     chart_2_sidebar,
     chart_2_plot
