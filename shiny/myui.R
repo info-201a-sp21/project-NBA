@@ -159,7 +159,7 @@ summary <- fluidPage(
   
 ui <- fluidPage(
   includeCSS("style.css"),
-  navbarPage(title = 'NBA Statistic Prediction',
+  navbarPage(title = '2019 NBA Season Statistical Analysis',
              tabPanel("INTRODUCTION", introduction),
              tabPanel("HOME VS. AWAY FG %", chart1_panel),
              tabPanel("LAKERS 3-PT %", chart_2_panel),
