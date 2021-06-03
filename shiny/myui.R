@@ -101,13 +101,15 @@ chart_2_plot <- mainPanel(
      (if there is a difference at all). The goal of this plot was to see if
      the Lakers 3 point percentage was to blame for their success
      in the 2019 season."
-  ), br(),
+  ), 
+  br(),
   plotlyOutput(outputId = "chart2")
 )
 
 chart_2_panel <- tabPanel("Chart 2",
   titlePanel("How does the 2019 Lakers 3-Point Percentage
              compare to the League Average?"),
+  hr(),
   sidebarLayout(
     chart_2_sidebar,
     chart_2_plot))
