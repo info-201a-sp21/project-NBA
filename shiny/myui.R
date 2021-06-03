@@ -22,13 +22,8 @@ introduction <- fluidPage(
   
   h3("Our Analysis"),
   p("Below are the questions we seek to answer from the dataset"),
-  p("1. Will the home game and away game affect the teams' performances?
-      - comparing the winning rate for each team during home game
-      and away game."), 
-  p("2. How influential is the three point field goal for the offense side?
-      - comparing the average three point field goal during winning and
-      losing game with the average field goal during winning and losing
-      game in each year."), 
+  p("1. Does Home or Away games affect TOP 8 teams' FG percentage?"), 
+  p("2. How does the 2019 Lakers 3-Point Percentage compare to the League Average?"), 
   p("3. How many points the 2019 champion, Lakers, get for each game
     throughout the whole season? Is the champion team perform steady?"),
   
@@ -100,6 +95,24 @@ chart_2_plot <- mainPanel(
 chart_2_panel <- tabPanel(
   "chart2",
   titlePanel("2019 Lakers 3-Point Percentage vs. League Average"),
+  h4("The purpose of this chart was to visuzlize the relationship between
+     the points the Lakers, who won the NBA Title in 2019, scored and their
+     3 point percentage. The league average on 3 point percentage and points
+     is also plotted to show how much better the Lakers are in each of these
+     categories. There are also plots with the Lakers home and away games
+     to visulaize the difference in scoring based on where they are playing
+     (if there is a difference at all). The goal of this plot was to see if
+     the Lakers 3 point percentage was to blame for their success
+     in the 2019 season."
+  ), 
+  br(),
+  plotlyOutput(outputId = "chart2")
+)
+
+chart_2_panel <- tabPanel("Chart 2",
+  titlePanel("How does the 2019 Lakers 3-Point Percentage
+             compare to the League Average?"),
+  hr(),
   sidebarLayout(
     chart_2_sidebar,
     chart_2_plot
@@ -137,11 +150,19 @@ chart_3_panel <- tabPanel(
   )
 )
 
-summary <- mainPanel(
-  h4("summary table"),
+
+summary <- fluidPage(
+  h2("First Takeaway"), 
+  hr(),
+  p("From the first graph, 7 out of 8 teams have a higher home games field goal
+    percentages than away games. Last year's championship Lakers has a field
+    goal percetage difference of 0.21, which is significantly lower than Heat,
+    Nuggets, Jazz. However, it is slightly higher than Spurs and Pacers.
+    Therefore, we can conclude that field goal percentage is not the only
+    factor that could determine the result of the games."),
   tableOutput("summary")
 )
-
+  
 ui <- fluidPage(
   includeCSS("style.css"),
   navbarPage(title = 'NBA Statistic Prediction',
