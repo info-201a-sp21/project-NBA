@@ -187,16 +187,6 @@ summary <- fluidPage(
     However, Lakers did not have the highest 3 point percentage, thus only 3
     point percentage does not have a significant role in determine the result
     of the games."),
-  h1("Third Takeaway"),
-  hr(),
-  p("The last takeaway from the Lakers's every game points during 2019 season
-    is that at the 115 points threshold, the Lakers performed close to its
-    average 113 whether it is home or away games. Although, at the beginning
-    of the season October 12, 2019, the Lakers had its lowest points, this
-    is probably because they had not adjust to the intense competition. One
-    month laster, they started to have a steady performance and got close to
-    the team's average."),
-  h1("Summary Table"),
   hr(),
   tableOutput("summary")
 )
