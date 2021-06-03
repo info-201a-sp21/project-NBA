@@ -4,15 +4,15 @@ library(tidyr)
 library(ggplot2)
 library(gghighlight)
 
-source("../scripts/chart1.R")
-source("../scripts/chart2.R")
-source("../scripts/chart3.R")
+source("./scripts/chart1.R")
+source("./scripts/chart2.R")
+source("./scripts/chart3.R")
 
 # load and clean data sets
-games_data <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
+games_data <- read.csv("./data/games.csv", stringsAsFactors = FALSE)
 games_data_2019 <- games_data %>%
   filter(SEASON == "2019")
-teams_data <- read.csv("../data/teams.csv", stringsAsFactors = FALSE)
+teams_data <- read.csv("./data/teams.csv", stringsAsFactors = FALSE)
 teams_data <- teams_data %>%
   select(TEAM_ID, NICKNAME)
 
