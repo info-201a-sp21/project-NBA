@@ -167,6 +167,8 @@ summary <- fluidPage(
     Nuggets, Jazz. However, it is slightly higher than Spurs and Pacers.
     Therefore, we can conclude that field goal percentage is not the only
     factor that could determine the result of the games."),
+  plotOutput("chart1_takeaway"),
+  br(),
   h1("Second Takeaway"),
   hr(),
   p("The takeaway from the second chart is that Lakers's 3 point percentage
@@ -175,6 +177,8 @@ summary <- fluidPage(
     However, Lakers did not have the highest 3 point percentage, thus only 3
     point percentage does not have a significant role in determine the result
     of the games."),
+  plotlyOutput("chart2_takeaway"),
+  br(),
   h1("Third Takeaway"),
   hr(),
   p("The last takeaway from the Lakers's every game points during 2019 season
@@ -184,6 +188,8 @@ summary <- fluidPage(
     probably because they had not adjust to the intense competition. One month
     laster, they started to have a steady performance and got close to the
     team's average. "),
+  plotlyOutput("chart3_takeaway"),
+  br(),
   h1("Summary Table"),
   p("The takeaway from the second chart is that Lakers's 3 point percentage
     during away games was more closely to the league's average. Lakers

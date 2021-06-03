@@ -4,6 +4,10 @@ library(tidyr)
 library(ggplot2)
 library(gghighlight)
 
+source("../scripts/chart1.R")
+source("../scripts/chart2.R")
+source("../scripts/chart3.R")
+
 # load and clean data sets
 games_data <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
 games_data_2019 <- games_data %>%
@@ -317,7 +321,22 @@ server <- function(input, output) {
 
     return(lakers_pts_chart)
   })
-
+  
+  # takeaway 1 chart
+  output$chart1_takeaway <- renderPlot(
+    return(chart1(games_data))
+  )
+  
+  # takeaway 2 chart
+  output$chart2_takeaway <- renderPlotly(
+    return(chart2(games_data))
+  )
+  
+  # takeaway 3 chart
+  output$chart3_takeaway <- renderPlotly(
+    return(chart3(games_data))
+  )
+  
   # summary table
   output$summary <- renderTable({
 
