@@ -1,7 +1,13 @@
 h1 {
   color: green;
 }
+h2 {
+  color: SlateBlue;
+}
 
+body {
+  background-color: lightgrey;
+}
 #titlePanel {
   color:green;
   background-color:lightblue;
