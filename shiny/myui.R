@@ -155,12 +155,28 @@ summary <- fluidPage(
     Nuggets, Jazz. However, it is slightly higher than Spurs and Pacers.
     Therefore, we can conclude that field goal percentage is not the only
     factor that could determine the result of the games."),
+  h2("Second Takeaway"),
+  hr(),
+  p("The takeaway from the second chart is that Lakers’s 3 point percentage during 
+  away games was more closely to the league’s average. 
+  Lakers performed better at home game than away games during the 2019 season. However, 
+    Lakers did not have the highest 3 point percentage, thus only 3 point percentage 
+    does not have a significant role in determine the result of the games."),
+  h2("Third Takeaway"),
+  hr(),
+  p("The last takeaway from the Lakers’s every game points during 2019 season is that at the 115 points threshold, 
+    the Lakers performed close to its average 113 whether it is home or away games.  
+    Although, at the beginning of the season October 12, 2019, the Lakers had its lowest points, 
+    this is probably because they had not adjust to the intense competition. One month laster, 
+    they started to have a steady performance and got close to the team’s average. "),
+  h2("Summary Table"),
+  hr(),
   tableOutput("summary")
 )
   
 ui <- fluidPage(
   includeCSS("style.css"),
-  navbarPage(title = 'NBA Statistic Prediction',
+  navbarPage(title = '2019 NBA Season Statistical Analysis',
              tabPanel("INTRODUCTION", introduction),
              tabPanel("HOME VS. AWAY FG %", chart1_panel),
              tabPanel("LAKERS 3-PT %", chart_2_panel),
