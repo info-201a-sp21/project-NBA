@@ -30,7 +30,9 @@ introduction <- fluidPage(
       losing game with the average field goal during winning and losing
       game in each year."), 
   p("3. How many points the 2019 champion, Lakers, get for each game
-    throughout the whole season? Is the champion team perform steady?")
+    throughout the whole season? Is the champion team perform steady?"),
+  
+  img(src = "./img/teams_logo.jpg", height = 72, width = 72)
 )
 
 # chart1 code
@@ -83,7 +85,7 @@ chart1_panel <- tabPanel(
 buttons <- radioButtons(
   inputId = "which_games",
   label = "Select which games you would like to view",
-  choices = list("All Games", "Away", "Home"),
+  choices = list("All Games", "Home", "Away"),
   selected = "All Games"
 )
 
@@ -92,25 +94,16 @@ chart_2_sidebar <- sidebarPanel(
 )
 
 chart_2_plot <- mainPanel(
-  h4("The purpose of this chart was to visuzlize the relationship between
-     the points the Lakers, who won the NBA Title in 2019, scored and their
-     3 point percentage. The league average on 3 point percentage and points
-     is also plotted to show how much better the Lakers are in each of these
-     categories. There are also plots with the Lakers home and away games
-     to visulaize the difference in scoring based on where they are playing
-     (if there is a difference at all). The goal of this plot was to see if
-     the Lakers 3 point percentage was to blame for their success
-     in the 2019 season."
-  ), br(),
-  plotlyOutput(outputId = "chart2")
+  plotOutput("chart2")
 )
 
-chart_2_panel <- tabPanel("Chart 2",
-  titlePanel("How does the 2019 Lakers 3-Point Percentage
-             compare to the League Average?"),
+chart_2_panel <- tabPanel(
+  "chart2",
+  titlePanel("2019 Lakers 3-Point Percentage vs. League Average"),
   sidebarLayout(
     chart_2_sidebar,
-    chart_2_plot))
+    chart_2_plot
+  ))
 
 # chart_3 code
 # sidebar
@@ -118,9 +111,7 @@ chart_3_sidebar <- sidebarPanel(
   sliderInput(
     inputId = "min_score",
     label = "Lakers' Score above", min = 77, max = 142, value = 105
-  ),
-  br(),
-  p("Note: red dashed line is the average PTS of selected games")
+  )
 )
 
 # show the plot
@@ -155,7 +146,7 @@ ui <- fluidPage(
   includeCSS("style.css"),
   navbarPage(title = 'NBA Statistic Prediction',
              tabPanel("INTRODUCTION", introduction),
-             tabPanel("TOP 8 TEAMS", chart1_panel),
+             tabPanel("HOME VS. AWAY FG %", chart1_panel),
              tabPanel("LAKERS 3-PT %", chart_2_panel),
              tabPanel("CHAMPION TEAM", chart_3_panel),
              tabPanel("SUMMARY INFORMATION", summary)
