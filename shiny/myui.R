@@ -113,6 +113,7 @@ chart_2_panel <- tabPanel(
   "Chart 2",
   titlePanel("How does the 2019 Lakers 3-Point Percentage
              compare to the League Average?"),
+  hr(),
   sidebarLayout(
     chart_2_sidebar,
     chart_2_plot
