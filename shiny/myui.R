@@ -27,7 +27,7 @@ introduction <- fluidPage(
   p("3. How many points the 2019 champion, Lakers, get for each game
     throughout the whole season? Is the champion team perform steady?"),
   
-  img(src = "./img/teams_logo.jpg", height = 72, width = 72)
+  img(src = "../img/teams_logo.jpg", height = 72, width = 72)
 )
 
 # chart1 code
@@ -89,12 +89,6 @@ chart_2_sidebar <- sidebarPanel(
 )
 
 chart_2_plot <- mainPanel(
-  plotOutput("chart2")
-)
-
-chart_2_panel <- tabPanel(
-  "chart2",
-  titlePanel("2019 Lakers 3-Point Percentage vs. League Average"),
   h4("The purpose of this chart was to visuzlize the relationship between
      the points the Lakers, who won the NBA Title in 2019, scored and their
      3 point percentage. The league average on 3 point percentage and points
@@ -103,16 +97,16 @@ chart_2_panel <- tabPanel(
      to visulaize the difference in scoring based on where they are playing
      (if there is a difference at all). The goal of this plot was to see if
      the Lakers 3 point percentage was to blame for their success
-     in the 2019 season."
-  ), 
+     in the 2019 season."),
   br(),
-  plotlyOutput(outputId = "chart2")
+  plotlyOutput("chart2")
 )
+
+
 
 chart_2_panel <- tabPanel("Chart 2",
   titlePanel("How does the 2019 Lakers 3-Point Percentage
              compare to the League Average?"),
-  hr(),
   sidebarLayout(
     chart_2_sidebar,
     chart_2_plot
