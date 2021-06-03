@@ -124,6 +124,7 @@ server <- function(input, output) {
 
   # chart 2
   output$chart2 <- renderPlotly({
+    nba_games_2020 <- games_data %>% filter(SEASON == "2019")
 
     # Filter for all Lakers games
     lakers_home_games <- filter(nba_games_2020, HOME_TEAM_ID == "1610612747")
