@@ -22,13 +22,8 @@ introduction <- fluidPage(
   
   h3("Our Analysis"),
   p("Below are the questions we seek to answer from the dataset"),
-  p("1. Will the home game and away game affect the teams' performances?
-      - comparing the winning rate for each team during home game
-      and away game."), 
-  p("2. How influential is the three point field goal for the offense side?
-      - comparing the average three point field goal during winning and
-      losing game with the average field goal during winning and losing
-      game in each year."), 
+  p("1. Does Home or Away games affect TOP 8 teams' FG percentage?"), 
+  p("2. How does the 2019 Lakers 3-Point Percentage compare to the League Average?"), 
   p("3. How many points the 2019 champion, Lakers, get for each game
     throughout the whole season? Is the champion team perform steady?")
 )
