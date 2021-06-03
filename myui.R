@@ -32,8 +32,7 @@ introduction <- fluidPage(
   p("3. How many points the 2019 champion, Lakers, get for each game
     throughout the whole season? Is the champion team perform steady?"),
   br(),
-  img(src = "https://www.greenberglawoffice.com/wp-content/uploads/NBA-Teams.jpg
-      ", width = "60%", height = "60%")
+  img(src = "teams_logo.jpg", width = "60%", height = "60%")
 )
 
 # chart1 code
