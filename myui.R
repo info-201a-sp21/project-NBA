@@ -54,7 +54,7 @@ values_or_diff <- radioButtons(
   choices = list("Values" = "values", "Difference" = "difference")
 )
 
-#create sidebar
+# create sidebar
 chart1_sidebar <- sidebarPanel(
   team_name_input,
   textOutput("difference"),
@@ -74,7 +74,7 @@ chart1_plot <- mainPanel(
   plotOutput("chart1")
 )
 
-#consolidate
+# consolidate
 chart1_panel <- tabPanel(
   "Chart 1",
   titlePanel("Does Home or Away games affect TOP 8 teams' FG percentage?"),
@@ -94,7 +94,7 @@ buttons <- radioButtons(
   selected = "All Games"
 )
 
-#create sidebar
+# create sidebar
 chart_2_sidebar <- sidebarPanel(
   buttons
 )
@@ -114,7 +114,7 @@ chart_2_plot <- mainPanel(
   plotlyOutput("chart2")
 )
 
-#consolidate
+# consolidate
 chart_2_panel <- tabPanel(
   "Chart 2",
   titlePanel("How does the 2019 Lakers 3-Point Percentage
@@ -145,10 +145,11 @@ chart_3_plot <- mainPanel(
   plotlyOutput("chart3")
 )
 
-#consolidate
+# consolidate
 chart_3_panel <- tabPanel(
   "Champion Team",
-  titlePanel("Does Champion team's (Lakers) perform steady throughout season 2019?"),
+  titlePanel("Does Champion team's (Lakers) perform steady throughout
+             season 2019?"),
   hr(),
   sidebarLayout(
     chart_3_sidebar,
@@ -156,9 +157,9 @@ chart_3_panel <- tabPanel(
   )
 )
 
-#create summary page
+# create summary page
 summary <- fluidPage(
-  h1("First Takeaway"), 
+  h1("First Takeaway"),
   hr(),
   p("From the first graph, 7 out of 8 teams have a higher home games field goal
     percentages than away games. Last year's championship Lakers has a field
@@ -166,20 +167,29 @@ summary <- fluidPage(
     Nuggets, Jazz. However, it is slightly higher than Spurs and Pacers.
     Therefore, we can conclude that field goal percentage is not the only
     factor that could determine the result of the games."),
+  plotOutput("chart1_takeaway"),
+  br(),
   h1("Second Takeaway"),
   hr(),
-  p("The takeaway from the second chart is that Lakers’s 3 point percentage during 
-  away games was more closely to the league’s average. 
-  Lakers performed better at home game than away games during the 2019 season. However, 
-    Lakers did not have the highest 3 point percentage, thus only 3 point percentage 
-    does not have a significant role in determine the result of the games."),
+  p("The takeaway from the second chart is that Lakers's 3 point percentage
+    during away games was more closely to the league's average.
+    Lakers performed better at home game than away games during the 2019 season.
+    However, Lakers did not have the highest 3 point percentage, thus only 3
+    point percentage does not have a significant role in determine the result
+    of the games."),
+  plotlyOutput("chart2_takeaway"),
+  br(),
   h1("Third Takeaway"),
   hr(),
-  p("The last takeaway from the Lakers’s every game points during 2019 season is that at the 115 points threshold, 
-    the Lakers performed close to its average 113 whether it is home or away games.  
-    Although, at the beginning of the season October 12, 2019, the Lakers had its lowest points, 
-    this is probably because they had not adjust to the intense competition. One month laster, 
-    they started to have a steady performance and got close to the team’s average. "),
+  p("The last takeaway from the Lakers's every game points during 2019 season
+    is that at the 115 points threshold, the Lakers performed close to its
+    average 113 whether it is home or away games. Although, at the beginning
+    of the season October 12, 2019, the Lakers had its lowest points, this is
+    probably because they had not adjust to the intense competition. One month
+    laster, they started to have a steady performance and got close to the
+    team's average. "),
+  plotlyOutput("chart3_takeaway"),
+  br(),
   h1("Summary Table"),
   p("The takeaway from the second chart is that Lakers's 3 point percentage
     during away games was more closely to the league's average. Lakers
@@ -191,7 +201,7 @@ summary <- fluidPage(
   tableOutput("summary")
 )
 
-#consolidate into ui page
+# consolidate into ui page
 ui <- fluidPage(
   includeCSS("style.css"),
   navbarPage(

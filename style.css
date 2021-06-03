@@ -1,6 +1,7 @@
 h1 {
-  color: darkblue;
+  color: dodgerblue;
 }
+
 h2 {
   color: SlateBlue;
 }
@@ -8,10 +9,15 @@ h2 {
 body {
   background-color: lightgrey;
 }
+
 #titlePanel {
   color:green;
   background-color:lightblue;
-  height: 50px;
+  height: 45px;
   font-family: Papyrus, fantasy;
   font-size: 40px;
+}
+
+table, th, td {
+  border: 3px solid tomato;
 }

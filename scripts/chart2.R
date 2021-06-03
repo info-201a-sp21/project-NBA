@@ -1,6 +1,5 @@
 # Scatter Plot: Lakers 3 Point Percentage vs League Average
-# load needed packages
-games_data <- read.csv("../data/games.csv", stringsAsFactors = FALSE)
+
 
 chart2 <- function(games_data) {
 
@@ -52,80 +51,73 @@ chart2 <- function(games_data) {
   # create a scatterplot comparing the League Average
   # (3 Point Percentage and Points) to the stats in each Lakers Game
   lakers_3pt_away <- ggplot(data = lakers_away_games) +
-    geom_point(mapping = aes(x = away_fg3_pct, y = away_pts,
-                             color = "Lakers Away Games")) +
-    geom_point(mapping = aes(x = ave_fg3_pct, y = ave_pts,
-                             color = "League Average")) +
+    geom_point(mapping = aes(
+      x = away_fg3_pct, y = away_pts,
+      color = "Lakers Away Games",
+      text = paste(
+        "Three Point %: ", away_fg3_pct,
+        "<br>Total Points: ", away_pts
+      )
+    )) +
+    geom_point(mapping = aes(
+      x = ave_fg3_pct, y = ave_pts,
+      color = "League Average",
+      text = paste(
+        "Average Three Point %: ", ave_fg3_pct,
+        "<br>Average Total Points: ", ave_pts
+      )
+    )) +
     labs(y = "Points (Away)", x = "3 pt pct (Away)") +
     labs(title = "Lakers 3 Point Percentage (Away) vs League Average") +
     scale_color_manual(values = colors, guide = "none")
   
   lakers_3pt_home <- ggplot(data = lakers_home_games) +
-    geom_point(mapping = aes(x = home_fg3_pct, y = home_pts,
-                             color = "Lakers Home Games")) +
-    geom_point(mapping = aes(x = ave_fg3_pct, y = ave_pts,
-                             color = "League Average")) +
+    geom_point(mapping = aes(
+      x = home_fg3_pct, y = home_pts,
+      color = "Lakers Home Games",
+      text = paste(
+        "Three Point %: ", home_fg3_pct,
+        "<br>Total Points: ", home_pts
+      )
+    )) +
+    geom_point(mapping = aes(
+      x = ave_fg3_pct, y = ave_pts,
+      color = "League Average",
+      text = paste(
+        "Average Three Point %: ", ave_fg3_pct,
+        "<br>Average Total Points: ", ave_pts
+      )
+    )) +
     labs(y = "Points (Home)", x = "3 pt pct (Home)") +
     labs(title = "Lakers 3 Point Percentage (Home) vs League Average") +
     scale_color_manual(values = colors, guide = "none")
   
   lakers_3pt <- ggplot(data = lakers_games) +
-    geom_point(mapping = aes(x = fg3_pct, y = pts, color = "Lakers Games")) +
-    geom_point(mapping = aes(x = ave_fg3_pct, y = ave_pts,
-                             color = "League Average")) +
+    geom_point(mapping = aes(
+      x = fg3_pct, y = pts, color = "Lakers Games",
+      text = paste(
+        "Three Point %: ", fg3_pct,
+        "<br>Total Points: ", pts
+      )
+    )) +
+    geom_point(mapping = aes(
+      x = ave_fg3_pct, y = ave_pts,
+      color = "League Average",
+      text = paste(
+        "Average Three Point %: ", ave_fg3_pct,
+        "<br>Average Total Points: ", ave_pts
+      )
+    )) +
     labs(y = "Points", x = "3 pt pct") +
     labs(title = "Lakers 3 Point Percentage vs League Average") +
     scale_color_manual(values = colors, guide = "none")
 
-  # Make scatterplot interactive
-  lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt)
-  
-  away_lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt_away)
-  
-  home_lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt_home)
-
-  if(input$which_games == "All Games") {
-    return(lakers_fg3_pct_vs_league)
-  }
-  
-  else if(input$which_games == "Away") {
-    return(away_lakers_fg3_pct_vs_league)
-  }
-  
-  else if(input$which_games == "Home") {
-    return(home_lakers_fg3_pct_vs_league)
-  }
-}
-
-print(home_lakers_fg3_pct_vs_league)
-
-
-
-
-=======
-  return(lakers_fg3_pct_vs_league)
-} else {
-  lakers_3pt <- ggplot(data = lakers_games) +
-    geom_point(mapping = aes(x = fg3_pct, y = pts, color = "Lakers Games",
-                             text = paste(
-                               "Three Point %: ", fg3_pct,
-                               "<br>Total Points: ", pts
-                             ))) +
-    geom_point(mapping = aes(x = ave_fg3_pct, y = ave_pts,
-                             color = "League Average",
-                             text = paste(
-                               "League Average Three Point %: ", ave_fg3_pct,
-                               "<br>League Average Total Points: ", pts
-                             ))) +
-    labs(y = "Points", x = "3 pt pct") +
-    labs(title = "Lakers 3 Point Percentage vs League Average") +
-    scale_color_manual(values = colors, guide = "none")
-  
   # Make scatterplot interactive
   lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt, tooltip = "text")
   
-  return(lakers_fg3_pct_vs_league)
+  away_lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt_away, tooltip = "text")
   
+  home_lakers_fg3_pct_vs_league <- ggplotly(lakers_3pt_home, tooltip = "text")
+
+  return(lakers_fg3_pct_vs_league)
 }
-})
->>>>>>> d29f56451f91e9997aebf786438715d33271bfd2
