@@ -141,11 +141,24 @@ chart_3_panel <- tabPanel(
   )
 )
 
+
+summary <- fluidPage(
+  h2("First Takeaway"), 
+  hr(),
+  br(),
+  p("From the first graph, 7 out of 8 teams have a higher home games field goal percentages than away games.
+    Last year's championship Lakers has a field goal percetage difference of 0.21, which is significantly lower than Heat, Nuggets, Jazz. 
+    However, it is slightly higher than Spurs and Pacers. Therefore, we can conclude that field goal percentage is not the only factor
+    that could determine the result of the games.")
+  
+)
+  
 summary <- mainPanel(
   h4("summary table"),
   tableOutput("summary")
 )
 
+  
 ui <- fluidPage(
   includeCSS("style.css"),
   navbarPage(title = 'NBA Statistic Prediction',
