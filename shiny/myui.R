@@ -3,7 +3,10 @@ library(plotly)
 
 # Introduction Page
 introduction <- fluidPage(
-  h1("NBA Data Analytics"),
+  tags$p(
+    id = "titlePanel",
+    "NBA Data Analytics"
+  ),
   hr(),
   br(),
   p("Every year, there are lottery gamblelings about the championship before
@@ -145,10 +148,7 @@ chart_3_plot <- mainPanel(
 #consolidate
 chart_3_panel <- tabPanel(
   "Champion Team",
-  tags$p(
-    id = "titlePanel",
-    "Does Champion team's (Lakers) perform steady throughout season 2019?"
-  ),
+  titlePanel("Does Champion team's (Lakers) perform steady throughout season 2019?"),
   hr(),
   sidebarLayout(
     chart_3_sidebar,
@@ -158,7 +158,7 @@ chart_3_panel <- tabPanel(
 
 #create summary page
 summary <- fluidPage(
-  h2("First Takeaway"),
+  h1("First Takeaway"), 
   hr(),
   p("From the first graph, 7 out of 8 teams have a higher home games field goal
     percentages than away games. Last year's championship Lakers has a field
@@ -166,24 +166,27 @@ summary <- fluidPage(
     Nuggets, Jazz. However, it is slightly higher than Spurs and Pacers.
     Therefore, we can conclude that field goal percentage is not the only
     factor that could determine the result of the games."),
-  h2("Second Takeaway"),
+  h1("Second Takeaway"),
   hr(),
+  p("The takeaway from the second chart is that Lakers’s 3 point percentage during 
+  away games was more closely to the league’s average. 
+  Lakers performed better at home game than away games during the 2019 season. However, 
+    Lakers did not have the highest 3 point percentage, thus only 3 point percentage 
+    does not have a significant role in determine the result of the games."),
+  h1("Third Takeaway"),
+  hr(),
+  p("The last takeaway from the Lakers’s every game points during 2019 season is that at the 115 points threshold, 
+    the Lakers performed close to its average 113 whether it is home or away games.  
+    Although, at the beginning of the season October 12, 2019, the Lakers had its lowest points, 
+    this is probably because they had not adjust to the intense competition. One month laster, 
+    they started to have a steady performance and got close to the team’s average. "),
+  h1("Summary Table"),
   p("The takeaway from the second chart is that Lakers's 3 point percentage
     during away games was more closely to the league's average. Lakers
     performed better at home game than away games during the 2019 season.
     However, Lakers did not have the highest 3 point percentage, thus only 3
     point percentage does not have a significant role in determine the result
     of the games."),
-  h2("Third Takeaway"),
-  hr(),
-  p("The last takeaway from the Lakers's every game points during 2019 season
-    is that at the 115 points threshold, the Lakers performed close to its
-    average 113 whether it is home or away games. Although, at the beginning
-    of the season October 12, 2019, the Lakers had its lowest points, this
-    is probably because they had not adjust to the intense competition. One
-    month laster, they started to have a steady performance and got close to
-    the team's average."),
-  h2("Summary Table"),
   hr(),
   tableOutput("summary")
 )
