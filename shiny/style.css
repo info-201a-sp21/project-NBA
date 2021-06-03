@@ -1,5 +1,5 @@
 h1 {
-  color: green;
+  color: dodgerblue;
 }
 
 h2 {
@@ -13,7 +13,11 @@ body {
 #titlePanel {
   color:green;
   background-color:lightblue;
-  height: 50px;
+  height: 45px;
   font-family: Papyrus, fantasy;
   font-size: 40px;
+}
+
+table, th, td {
+  border: 3px solid tomato;
 }
