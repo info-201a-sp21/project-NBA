@@ -46,49 +46,92 @@ server <- function(input, output) {
       left_join(home_team_avg_fg, visitor_team_avg_fg, by = "team_name")
     
     # calculate average FG percentage of both home and away games
-    # for each team; select top 8 teams with highest average value
+    # for each team and the difference between home and away games;
+    # select top 8 teams with highest average value
     top8_teams_avg_fg <- teams_avg_fg %>%
       mutate(average = (home_avg_fg_perc + away_avg_fg_perc) / 2) %>%
       arrange(-average) %>%
       top_n(8) %>%
       select(team_name, home_avg_fg_perc, away_avg_fg_perc)
     
+    # dataset that includes difference 
+    fg_perc_diff_df <- top8_teams_avg_fg %>% 
+      mutate(diff = abs(round((home_avg_fg_perc - away_avg_fg_perc) *100, 2)))
+    
+    # pull the difference for select teams
+    home_away_diff <- fg_perc_diff_df %>% 
+      filter(team_name == input$team_name) %>%
+      pull(diff)
+    
     # reshape data set
     top8_teams_avg_fg <-
       gather(top8_teams_avg_fg, home_away, teams_avg_fg, -team_name)
     
-    # create a grouped barchart for teams' Top8 average field goal percentage
-    top8_teams_avg_fg_chart <-
-      ggplot(
-        top8_teams_avg_fg,
-        aes(y = teams_avg_fg, x = team_name)
-      ) +
-      geom_bar(aes(fill = factor(home_away,
-                                 labels = c("home games", "away games")
-      )),
-      position = "dodge", stat = "identity"
-      ) +
-      coord_cartesian(ylim=c(0.4,0.5)) +
-      labs(
-        x = "Team name", y = "Teams average FG percentage"
-      ) +
-      gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
-      theme(legend.title = element_blank())
+    output$difference <- renderText({
+      if( home_away_diff > 0) {
+        home_away <- ("home games")
+      } else {
+        home_away <- ("away games")
+      }
+      return(paste0(input$team_name, " performs better in ", home_away,
+                    "; the difference between is ",
+                    home_away_diff, "%."))
+    })
     
-    return(top8_teams_avg_fg_chart)
+    if(input$values_difference == "values") {
+      # create a grouped barchart for teams' Top8 average field goal percentage
+      top8_teams_avg_fg_chart <-
+        ggplot(
+          top8_teams_avg_fg,
+          aes(y = teams_avg_fg, x = team_name)
+        ) +
+        geom_bar(aes(fill = factor(home_away,
+                                   labels = c("away games", "home games")
+        )),
+        position = "dodge", stat = "identity"
+        ) +
+        coord_cartesian(ylim=c(0.40,0.50)) +
+        labs(
+          x = "Team name", y = "Teams average FG percentage"
+        ) +
+        gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
+        theme(legend.title = element_blank())
+      
+      return(top8_teams_avg_fg_chart)
+    } else {
+      # create a grouped barchart for teams' Top8 average field goal percentage
+      top8_teams_diff_chart <-
+        ggplot(
+          fg_perc_diff_df,
+          aes(y = diff, x = team_name)
+        ) +
+        geom_bar(
+          position = "dodge", stat = "identity", fill="#56B4E9"
+        ) +
+        labs(
+          x = "Team name", y = "Difference of FG percentage between home and away games (%)"
+        )+
+        geom_text(aes(label=diff), vjust=-0.3, size=5) +
+        gghighlight(team_name == input$team_name, use_direct_label = FALSE) +
+        theme(legend.title = element_blank())
+      
+      return(top8_teams_diff_chart)
+    }
+    
   })
   
   #chart 2
   output$chart2 <- renderPlotly({
     
+    nba_games_2020 <- games_data %>% filter(SEASON == "2019")
+    
     # Filter for all Lakers games
-    lakers_home_games <- filter(games_data_2019, HOME_TEAM_ID == "1610612747")
-    lakers_away_games <- filter(games_data_2019,
-                                VISITOR_TEAM_ID == "1610612747")
+    lakers_home_games <- filter(nba_games_2020, HOME_TEAM_ID == "1610612747")
+    lakers_away_games <- filter(nba_games_2020, VISITOR_TEAM_ID == "1610612747")
     lakers_games <- full_join(lakers_away_games, lakers_home_games)
     
     # Compute league averages for 3 point percentage and points
-    ave_fg3_pct <- games_data_2019 %>%
+    ave_fg3_pct <- nba_games_2020 %>%
       select(FG3_PCT_home, FG3_PCT_away) %>%
       summarize(
         count = n() * 2,
@@ -98,7 +141,7 @@ server <- function(input, output) {
       pull(ave)
     ave_fg3_pct <- round(ave_fg3_pct, digits = 3)
     
-    ave_pts <- games_data_2019 %>%
+    ave_pts <- nba_games_2020 %>%
       select(PTS_home, PTS_away) %>%
       summarize(
         count = n() * 2,
@@ -171,10 +214,8 @@ server <- function(input, output) {
     else if(input$which_games == "Home") {
       return(home_lakers_fg3_pct_vs_league)
     }
-    
-  }
-  )
-  
+  })
+
   
   #chart 3
   output$chart3 <- renderPlotly({
@@ -187,7 +228,6 @@ server <- function(input, output) {
     
     # distinguish home/away game
     lakers_games$type <- ifelse(lakers_games$HOME_TEAM_NAME == "Lakers",
-      
                                                           "Home", "Away"
     )
     
@@ -247,10 +287,9 @@ server <- function(input, output) {
       ) %>%
       arrange(Field_Goal_Percentage)
     names(all_teams_data)[1:4] <- c("Team Name", "Rebounds", "Free Throw
-                                    Percentage", "Field Goal Percentage" )
+                                    Percentage", "Field Goal Percentage")
     
     return(all_teams_data)
   },
   striped = TRUE)
 }
-

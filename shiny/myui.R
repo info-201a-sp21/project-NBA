@@ -35,18 +35,28 @@ introduction <- fluidPage(
 
 # chart1 code
 # select input
-x_input <- selectInput(
+team_name_input <- selectInput(
   inputId = "team_name",
-  label = "Select one of the TOP 8 teams:",
+  label = "Select one of the TOP 8 teams to see the difference:",
   choices = list("Bucks", "Heat", "Jazz", "Lakers", "Nuggets", "Pacers", 
                  "Pelicans", "Spurs"),
   selected = "Bucks"
 )
 
+values_or_diff <- radioButtons(
+  inputId = "values_difference",
+  label = h3("Show values or difference:"),
+  choices = list("Values" = "values", "Difference" = "difference")
+)
+
 # sidebar
 chart1_sidebar <- sidebarPanel(
- x_input,
- p("Note: Top 8 teams are measured by average FG percentage")
+  team_name_input,
+  textOutput("difference"),
+  br(),
+  p("Note: Top 8 teams are measured by average FG percentage."),
+  br(),
+  values_or_diff
 )
 
 # show plot
@@ -54,14 +64,14 @@ chart1_plot <- mainPanel(
   h4("This chart was intended to visualize and compare how top 8 teams who
      have the highest Field Goal percentage in general perform in their home
      and away games. The grouped bar chart shows clearly the difference
-     between each team??s Field Goal percentage in their home and away games."),
+     between each team's Field Goal percentage in their home and away games."),
   br(),
   plotOutput("chart1")
 )
 
 chart1_panel <- tabPanel(
   "Chart 1",
-  titlePanel("Does Home and Away game affect TOP 8 teams FG percentage?"),
+  titlePanel("Does Home or Away games affect TOP 8 teams' FG percentage?"),
   hr(),
   sidebarLayout(
     chart1_sidebar,
@@ -73,7 +83,7 @@ chart1_panel <- tabPanel(
 buttons <- radioButtons(
   inputId = "which_games",
   label = "Select which games you would like to view",
-  choices = list("All Games", "Home", "Away"),
+  choices = list("All Games", "Away", "Home"),
   selected = "All Games"
 )
 
@@ -82,14 +92,23 @@ chart_2_sidebar <- sidebarPanel(
 )
 
 chart_2_plot <- mainPanel(
-  h4("graph description"
-  ),
+  h4("The purpose of this chart was to visuzlize the relationship between
+     the points the Lakers, who won the NBA Title in 2019, scored and their
+     3 point percentage. The league average on 3 point percentage and points
+     is also plotted to show how much better the Lakers are in each of these
+     categories. There are also plots with the Lakers home and away games
+     to visulaize the difference in scoring based on where they are playing
+     (if there is a difference at all). The goal of this plot was to see if
+     the Lakers 3 point percentage was to blame for their success
+     in the 2019 season."
+  ), br(),
   plotlyOutput(outputId = "chart2")
 )
 
 chart_2_panel <- tabPanel("Chart 2",
   titlePanel("How does the 2019 Lakers 3-Point Percentage
              compare to the League Average?"),
+
   sidebarLayout(
     chart_2_sidebar,
     chart_2_plot
@@ -101,7 +120,9 @@ chart_3_sidebar <- sidebarPanel(
   sliderInput(
     inputId = "min_score",
     label = "Lakers' Score above", min = 77, max = 142, value = 105
-  )
+  ),
+  br(),
+  p("Note: red dashed line is the average PTS of selected games")
 )
 
 # show the plot
@@ -142,10 +163,3 @@ ui <- fluidPage(
              tabPanel("SUMMARY INFORMATION", summary)
   )
 )
-  
-  
-  
-  
-  
-  
-  
