@@ -190,12 +190,6 @@ summary <- fluidPage(
   plotlyOutput("chart3_takeaway"),
   br(),
   h1("Summary Table"),
-  p("The takeaway from the second chart is that Lakers's 3 point percentage
-    during away games was more closely to the league's average. Lakers
-    performed better at home game than away games during the 2019 season.
-    However, Lakers did not have the highest 3 point percentage, thus only 3
-    point percentage does not have a significant role in determine the result
-    of the games."),
   hr(),
   tableOutput("summary")
 )
